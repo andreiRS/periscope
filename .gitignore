@@ -1,0 +1,26 @@
+# Local-only docs (private context, never commit)
+*.local.md
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Firecrawl scrape outputs
+.firecrawl/
+
+# Node / Bun
+node_modules/
+
+# Astro
+dist/
+.astro/
+
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Env
+.env
+.env.local
+.env.*.local
