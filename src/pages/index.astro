@@ -1,0 +1,252 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Periscope: who is getting recommended to your customers instead of you?';
+const description =
+  'Periscope is an LLM Visibility Audit for indie SaaS founders. Find out who ChatGPT, Claude, Perplexity, and Gemini recommend to your customers instead of you, and why.';
+---
+
+<Layout title={title} description={description}>
+  <main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
+    <!-- Hero -->
+    <section class="mb-20">
+      <p class="mb-4 text-sm font-medium uppercase tracking-wider text-zinc-500">
+        Periscope, launching soon
+      </p>
+      <h1 class="text-4xl font-semibold leading-tight tracking-tight text-zinc-950 md:text-5xl">
+        Who is ChatGPT recommending to your customers instead of you?
+      </h1>
+      <p class="mt-6 text-lg leading-relaxed text-zinc-700">
+        One founder I tested got <strong class="font-semibold text-zinc-950">3 mentions</strong>
+        across 47 buyer-intent prompts. A competitor they had never heard of got
+        <strong class="font-semibold text-zinc-950">19</strong>. Periscope shows
+        you the gap across ChatGPT, Claude, Perplexity, and Gemini, and the
+        fixes most likely to close it.
+      </p>
+
+      <!-- Primary CTA -->
+      <div class="mt-10 rounded-lg border border-zinc-200 bg-zinc-50 p-6">
+        <h2 class="text-base font-semibold text-zinc-950">
+          Get notified when audits open up
+        </h2>
+        <p class="mt-1 text-sm text-zinc-600">
+          No spam. One email when Periscope is ready, and occasional notes on
+          what I learn from the early runs.
+        </p>
+        <!-- TODO: Buttondown embed form goes here -->
+        <form class="mt-4 flex flex-col gap-2 sm:flex-row">
+          <input
+            type="email"
+            required
+            placeholder="you@yourcompany.com"
+            class="flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:outline-none focus:ring-1 focus:ring-zinc-900"
+          />
+          <button
+            type="submit"
+            class="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+          >
+            Join the waitlist
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- What you get -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
+        What you get
+      </h2>
+      <ul class="mt-6 space-y-4 text-zinc-700">
+        <li>
+          <strong class="font-semibold text-zinc-950">A visibility matrix.</strong>
+          Your brand vs. the named competitors, scored across ChatGPT, Claude,
+          Perplexity, and Gemini.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">The competitor surface.</strong>
+          The exact products being recommended in the slot you want, including
+          ones you have never heard of.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">A prioritized fix list.</strong>
+          Ranked by effort: 15 minutes, one day, one week. Concrete, not
+          generic SEO advice.
+        </li>
+      </ul>
+      <p class="mt-6 text-sm text-zinc-600">
+        Delivered as a single Markdown or PDF report inside two business days
+        of URL submission.
+      </p>
+    </section>
+
+    <!-- How it works -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
+        How it works
+      </h2>
+      <ol class="mt-6 space-y-4 text-zinc-700">
+        <li>
+          <strong class="font-semibold text-zinc-950">1. You submit a URL.</strong>
+          Your landing page or product page.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">2. Periscope generates 30 to 50 buyer-intent prompts.</strong>
+          Spanning discovery, comparison, and evaluation stages.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">3. Every prompt runs across all four LLMs.</strong>
+          ChatGPT, Claude, Perplexity, and Gemini.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">4. Mentions are tallied per brand.</strong>
+          Yours, your competitors, and anyone else showing up.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">5. The site is inspected against the most likely causes.</strong>
+          Positioning, schema, content coverage, third-party mentions.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">6. Fixes are ranked by effort against expected lift.</strong>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Early findings -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
+        Early findings
+      </h2>
+      <p class="mt-4 text-sm text-zinc-600">
+        From beta runs against two anonymized indie SaaS products. Small
+        sample, but the patterns are consistent.
+      </p>
+      <ul class="mt-6 space-y-4 text-zinc-700">
+        <li>
+          <strong class="font-semibold text-zinc-950">An indie SaaS 4 days post-launch:</strong>
+          <strong class="font-semibold text-zinc-950">0 mentions</strong> out of
+          <strong class="font-semibold text-zinc-950">115</strong>
+          prompt-LLM combinations. Cold start is real and measurable.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">A Shopify-adjacent tool with active users:</strong>
+          <strong class="font-semibold text-zinc-950">6 out of 160</strong>
+          mentions (<strong class="font-semibold text-zinc-950">3.75%</strong>).
+          The audit also surfaced a positioning gap between the landing page
+          and the marketplace listing that was invisible to the founder
+          before the run.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">Cross-LLM brand variance:</strong>
+          the same prompt to ChatGPT, Claude, Perplexity, and Gemini returns
+          different brand sets. There is no single "AI search" channel to
+          optimize for.
+        </li>
+        <li>
+          <strong class="font-semibold text-zinc-950">Consumer vs. API divergence:</strong>
+          the API answer for a buyer-intent prompt can list completely
+          different brands than the consumer chat UI for the same prompt,
+          because the consumer UI may pull live web search.
+        </li>
+      </ul>
+    </section>
+
+    <!-- What we have learned -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
+        What I have learned about LLM visibility
+      </h2>
+      <ul class="mt-6 space-y-4 text-zinc-700">
+        <li>
+          LLMs return different brand sets for the same prompt. You cannot
+          optimize for "AI search" as a single channel.
+        </li>
+        <li>
+          Vendor-published comparison content (the classic "X vs. Y vs. Z"
+          listicle on the vendor's own blog) is currently the most reliable
+          indexing mechanism.
+        </li>
+        <li>
+          API outputs and consumer chat outputs diverge. Both need tracking
+          if you care about being found.
+        </li>
+        <li>
+          Effects of fixes take weeks to surface, which shapes how reporting
+          cadence and re-runs should be priced.
+        </li>
+      </ul>
+    </section>
+
+    <!-- Glossary -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
+        AEO and GEO, briefly
+      </h2>
+      <dl class="mt-6 space-y-4 text-zinc-700">
+        <div>
+          <dt class="font-semibold text-zinc-950">AEO (Answer Engine Optimization).</dt>
+          <dd>
+            Making your product the answer when a user asks a buyer-intent
+            question to an LLM, instead of just ranking on a search results
+            page.
+          </dd>
+        </div>
+        <div>
+          <dt class="font-semibold text-zinc-950">GEO (Generative Engine Optimization).</dt>
+          <dd>
+            Same idea, broader framing: shaping what generative models say
+            about your category and your product.
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <!-- Waitlist (secondary) -->
+    <section class="mb-16 rounded-lg border border-zinc-200 bg-zinc-50 p-6">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
+        Want one when audits open up?
+      </h2>
+      <p class="mt-2 text-zinc-700">
+        Drop your email. I will send one note when Periscope is ready.
+      </p>
+      <!-- TODO: Buttondown embed form goes here -->
+      <form class="mt-4 flex flex-col gap-2 sm:flex-row">
+        <input
+          type="email"
+          required
+          placeholder="you@yourcompany.com"
+          class="flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:outline-none focus:ring-1 focus:ring-zinc-900"
+        />
+        <button
+          type="submit"
+          class="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+        >
+          Join the waitlist
+        </button>
+      </form>
+    </section>
+
+    <!-- About -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
+        About
+      </h2>
+      <p class="mt-4 text-zinc-700">
+        I am Andrei. I build small, focused tools for SaaS founders and run
+        experiments in public at <a href="https://surdu.de" class="underline underline-offset-4 hover:text-zinc-950">surdu.de</a>.
+        Periscope is one of them.
+      </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-20 border-t border-zinc-200 pt-8 text-sm text-zinc-500">
+      <div class="flex flex-col gap-2 sm:flex-row sm:justify-between">
+        <p>
+          <a href="https://surdu.de" class="hover:text-zinc-900">surdu.de</a>
+        </p>
+        <p>
+          <a href="mailto:andrei@surdu.eu" class="hover:text-zinc-900">andrei@surdu.eu</a>
+        </p>
+      </div>
+    </footer>
+  </main>
+</Layout>
