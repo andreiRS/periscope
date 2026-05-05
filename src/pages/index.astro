@@ -4,156 +4,272 @@ import Layout from '../layouts/Layout.astro';
 const title = 'Periscope: who is getting recommended to your customers instead of you?';
 const description =
   'Periscope is an LLM Visibility Audit for indie SaaS founders. Find out who ChatGPT, Claude, Perplexity, and Gemini recommend to your customers instead of you, and why.';
+
+const llms = ['ChatGPT', 'Claude', 'Perplexity', 'Gemini'];
+
+type Cell = { brand: string; you?: boolean; empty?: boolean };
+
+const matrix: { prompt: string; cells: Cell[] }[] = [
+  {
+    prompt: 'best note-taking app for researchers',
+    cells: [
+      { brand: 'Brand A' },
+      { brand: 'Brand B' },
+      { brand: 'Brand A' },
+      { brand: 'Brand C' },
+    ],
+  },
+  {
+    prompt: 'alternatives to Notion for small teams',
+    cells: [
+      { brand: 'Brand D' },
+      { brand: 'Brand A' },
+      { brand: 'Brand D' },
+      { brand: 'Brand E' },
+    ],
+  },
+  {
+    prompt: 'tools for managing customer feedback',
+    cells: [
+      { brand: 'Brand F' },
+      { brand: 'Brand G' },
+      { brand: '', empty: true },
+      { brand: 'Brand F' },
+    ],
+  },
+  {
+    prompt: 'best help desk for small SaaS',
+    cells: [
+      { brand: 'Brand H' },
+      { brand: 'Brand H' },
+      { brand: 'Your brand', you: true },
+      { brand: 'Brand I' },
+    ],
+  },
+  {
+    prompt: 'habit tracker that respects privacy',
+    cells: [
+      { brand: 'Brand J' },
+      { brand: 'Brand K' },
+      { brand: 'Brand J' },
+      { brand: 'Brand L' },
+    ],
+  },
+  {
+    prompt: 'self-hosted analytics for indie founders',
+    cells: [
+      { brand: 'Brand M' },
+      { brand: 'Brand N' },
+      { brand: 'Brand M' },
+      { brand: '', empty: true },
+    ],
+  },
+  {
+    prompt: 'email tools for newsletter creators',
+    cells: [
+      { brand: 'Brand O' },
+      { brand: 'Brand P' },
+      { brand: 'Brand O' },
+      { brand: 'Brand Q' },
+    ],
+  },
+  {
+    prompt: 'Shopify alternatives for digital products',
+    cells: [
+      { brand: 'Brand R' },
+      { brand: 'Brand S' },
+      { brand: 'Brand R' },
+      { brand: 'Brand T' },
+    ],
+  },
+];
 ---
 
 <Layout title={title} description={description}>
-  <main class="mx-auto max-w-2xl px-6 py-16 md:py-24">
-    <!-- Hero -->
-    <section class="mb-20">
+  <main class="mx-auto max-w-3xl px-6 py-16 md:py-24">
+    <!-- 1. Hero -->
+    <section class="mb-16">
       <p class="mb-4 text-sm font-medium uppercase tracking-wider text-zinc-500">
-        Periscope, launching soon
+        LLM Visibility Audit. Launching soon.
       </p>
       <h1 class="text-4xl font-semibold leading-tight tracking-tight text-zinc-950 md:text-5xl">
         Who is ChatGPT recommending to your customers instead of you?
       </h1>
       <p class="mt-6 text-lg leading-relaxed text-zinc-700">
-        One founder I tested got <strong class="font-semibold text-zinc-950">3 mentions</strong>
-        across 47 buyer-intent prompts. A competitor they had never heard of got
-        <strong class="font-semibold text-zinc-950">19</strong>. Periscope shows
-        you the gap across ChatGPT, Claude, Perplexity, and Gemini, and the
-        fixes most likely to close it.
+        One founder ran the numbers on their own product. Across 47
+        buyer-intent prompts, they got
+        <strong class="font-semibold text-zinc-950">3 mentions</strong>. A
+        competitor they had never heard of got
+        <strong class="font-semibold text-zinc-950">19</strong>. Periscope
+        shows you that gap across ChatGPT, Claude, Perplexity, and Gemini,
+        plus the fixes most likely to close it.
       </p>
 
       <!-- Primary CTA -->
       <div class="mt-10 rounded-lg border border-zinc-200 bg-zinc-50 p-6">
-        <h2 class="text-base font-semibold text-zinc-950">
-          Get notified when audits open up
-        </h2>
-        <p class="mt-1 text-sm text-zinc-600">
-          No spam. One email when Periscope is ready, and occasional notes on
-          what I learn from the early runs.
-        </p>
         <!-- TODO: Buttondown embed form goes here -->
-        <form class="mt-4 flex flex-col gap-2 sm:flex-row">
+        <form class="flex flex-col gap-2 sm:flex-row">
           <input
             type="email"
             required
             placeholder="you@yourcompany.com"
+            aria-label="Email address"
             class="flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:outline-none focus:ring-1 focus:ring-zinc-900"
           />
           <button
             type="submit"
             class="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
           >
-            Join the waitlist
+            Email me when audits open
           </button>
         </form>
+        <p class="mt-3 text-xs text-zinc-500">
+          No spam. One email when audits open up, then nothing else.
+        </p>
       </div>
     </section>
 
-    <!-- What you get -->
-    <section class="mb-16">
+    <!-- 2. The artifact -->
+    <section class="mb-20">
       <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        What you get
+        Here is what lands in your inbox.
       </h2>
-      <ul class="mt-6 space-y-4 text-zinc-700">
-        <li>
-          <strong class="font-semibold text-zinc-950">A visibility matrix.</strong>
-          Your brand vs. the named competitors, scored across ChatGPT, Claude,
-          Perplexity, and Gemini.
-        </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">The competitor surface.</strong>
-          The exact products being recommended in the slot you want, including
-          ones you have never heard of.
-        </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">A prioritized fix list.</strong>
-          Ranked by effort: 15 minutes, one day, one week. Concrete, not
-          generic SEO advice.
-        </li>
-      </ul>
-      <p class="mt-6 text-sm text-zinc-600">
-        Delivered as a single Markdown or PDF report inside two business days
-        of URL submission.
+      <div class="mt-6 overflow-x-auto rounded-lg border border-zinc-200 bg-white">
+        <table class="w-full min-w-[640px] border-collapse text-sm">
+          <thead>
+            <tr class="border-b border-zinc-200 bg-zinc-50 text-left">
+              <th class="px-4 py-3 font-medium text-zinc-600">Prompt</th>
+              {llms.map((llm) => (
+                <th class="px-4 py-3 text-center font-medium text-zinc-600">
+                  {llm}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {matrix.map((row, i) => (
+              <tr class={i < matrix.length - 1 ? 'border-b border-zinc-100' : ''}>
+                <td class="px-4 py-3 text-zinc-700">{row.prompt}</td>
+                {row.cells.map((cell) => (
+                  <td class="px-4 py-3 text-center">
+                    {cell.empty ? (
+                      <span class="text-zinc-300">&ndash;</span>
+                    ) : cell.you ? (
+                      <span class="inline-flex items-center rounded-md bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-900 ring-1 ring-inset ring-emerald-200">
+                        {cell.brand}
+                      </span>
+                    ) : (
+                      <span class="inline-flex items-center rounded-md bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-700 ring-1 ring-inset ring-zinc-200">
+                        {cell.brand}
+                      </span>
+                    )}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="mt-4 text-sm text-zinc-600">
+        Real format. Anonymized data. Yours arrives as Markdown or PDF, inside
+        2 business days of URL submission.
       </p>
     </section>
 
-    <!-- How it works -->
-    <section class="mb-16">
+    <!-- 3. What is in the report -->
+    <section class="mb-20">
       <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        How it works
+        Three things, in one document.
       </h2>
-      <ol class="mt-6 space-y-4 text-zinc-700">
-        <li>
-          <strong class="font-semibold text-zinc-950">1. You submit a URL.</strong>
-          Your landing page or product page.
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <div class="rounded-lg border border-zinc-200 p-5">
+          <h3 class="font-semibold text-zinc-950">Visibility matrix</h3>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-700">
+            Every prompt, every LLM, every brand named. Your brand vs. the
+            competition, at a glance.
+          </p>
+        </div>
+        <div class="rounded-lg border border-zinc-200 p-5">
+          <h3 class="font-semibold text-zinc-950">Competitor surface</h3>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-700">
+            The named brands filling the slot your product should fill, sorted
+            by frequency.
+          </p>
+        </div>
+        <div class="rounded-lg border border-zinc-200 p-5">
+          <h3 class="font-semibold text-zinc-950">Prioritized fix list</h3>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-700">
+            Ranked by effort: 15 min, 1 day, 1 week. Each fix tied to a likely
+            cause: positioning, schema, content coverage, or third-party
+            mentions.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. How it works -->
+    <section class="mb-20">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
+        From URL to report in 2 business days.
+      </h2>
+      <ol class="mt-6 space-y-3 text-zinc-700">
+        <li class="flex gap-3">
+          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">1</span>
+          <span>You submit a landing page URL.</span>
         </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">2. Periscope generates 30 to 50 buyer-intent prompts.</strong>
-          Spanning discovery, comparison, and evaluation stages.
+        <li class="flex gap-3">
+          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">2</span>
+          <span>I generate 30 to 50 buyer-intent prompts spanning discovery, comparison, and evaluation.</span>
         </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">3. Every prompt runs across all four LLMs.</strong>
-          ChatGPT, Claude, Perplexity, and Gemini.
+        <li class="flex gap-3">
+          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">3</span>
+          <span>Every prompt runs across ChatGPT, Claude, Perplexity, and Gemini.</span>
         </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">4. Mentions are tallied per brand.</strong>
-          Yours, your competitors, and anyone else showing up.
+        <li class="flex gap-3">
+          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">4</span>
+          <span>Mentions are tallied per brand per LLM into your visibility matrix.</span>
         </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">5. The site is inspected against the most likely causes.</strong>
-          Positioning, schema, content coverage, third-party mentions.
-        </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">6. Fixes are ranked by effort against expected lift.</strong>
+        <li class="flex gap-3">
+          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">5</span>
+          <span>Your site is inspected against the 2 to 3 most likely causes of low visibility, and fixes are ranked by effort.</span>
         </li>
       </ol>
     </section>
 
-    <!-- Early findings -->
-    <section class="mb-16">
+    <!-- 5. Early findings -->
+    <section class="mb-20">
       <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        Early findings
+        What early runs surfaced.
       </h2>
-      <p class="mt-4 text-sm text-zinc-600">
-        From beta runs against two anonymized indie SaaS products. Small
-        sample, but the patterns are consistent.
-      </p>
-      <ul class="mt-6 space-y-4 text-zinc-700">
-        <li>
-          <strong class="font-semibold text-zinc-950">An indie SaaS 4 days post-launch:</strong>
-          <strong class="font-semibold text-zinc-950">0 mentions</strong> out of
-          <strong class="font-semibold text-zinc-950">115</strong>
-          prompt-LLM combinations. Cold start is real and measurable.
-        </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">A Shopify-adjacent tool with active users:</strong>
-          <strong class="font-semibold text-zinc-950">6 out of 160</strong>
-          mentions (<strong class="font-semibold text-zinc-950">3.75%</strong>).
-          The audit also surfaced a positioning gap between the landing page
-          and the marketplace listing that was invisible to the founder
-          before the run.
-        </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">Cross-LLM brand variance:</strong>
-          the same prompt to ChatGPT, Claude, Perplexity, and Gemini returns
+      <div class="mt-6 space-y-5 text-zinc-700">
+        <p>
+          <strong class="font-semibold text-zinc-950">0 out of 115.</strong>
+          An indie SaaS 4 days post-launch. Zero mentions across every
+          prompt-LLM combination. The cold start is real and measurable.
+        </p>
+        <p>
+          <strong class="font-semibold text-zinc-950">6 out of 160 (3.75%).</strong>
+          A Shopify-adjacent tool with active users. The audit also surfaced a
+          positioning gap between their landing page and their app store
+          listing that was invisible to them before the run.
+        </p>
+        <p>
+          <strong class="font-semibold text-zinc-950">Cross-LLM brand variance.</strong>
+          The same prompt to ChatGPT, Claude, Perplexity, and Gemini returns
           different brand sets. There is no single "AI search" channel to
           optimize for.
-        </li>
-        <li>
-          <strong class="font-semibold text-zinc-950">Consumer vs. API divergence:</strong>
-          the API answer for a buyer-intent prompt can list completely
-          different brands than the consumer chat UI for the same prompt,
-          because the consumer UI may pull live web search.
-        </li>
-      </ul>
+        </p>
+      </div>
+      <p class="mt-6 text-sm italic text-zinc-500">
+        Small sample from beta. The numbers will move; the patterns probably
+        will not.
+      </p>
     </section>
 
-    <!-- What we have learned -->
-    <section class="mb-16">
+    <!-- 6. What I have learned -->
+    <section class="mb-20">
       <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        What I have learned about LLM visibility
+        Four notes from the runs so far.
       </h2>
       <ul class="mt-6 space-y-4 text-zinc-700">
         <li>
@@ -161,52 +277,38 @@ const description =
           optimize for "AI search" as a single channel.
         </li>
         <li>
-          Vendor-published comparison content (the classic "X vs. Y vs. Z"
-          listicle on the vendor's own blog) is currently the most reliable
-          indexing mechanism.
+          Vendor-published comparison content ("X vs Y vs Z" listicles on the
+          vendor's own blog) is currently the most reliable way in.
         </li>
         <li>
-          API outputs and consumer chat outputs diverge. Both need tracking
-          if you care about being found.
+          API and consumer-chat outputs diverge. Consumer UIs may pull live
+          web search; APIs often will not. Both need tracking.
         </li>
         <li>
-          Effects of fixes take weeks to surface, which shapes how reporting
-          cadence and re-runs should be priced.
+          Fixes take weeks to surface in LLM outputs. Re-runs matter more than
+          one-shots.
         </li>
       </ul>
-    </section>
 
-    <!-- Glossary -->
-    <section class="mb-16">
-      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        AEO and GEO, briefly
-      </h2>
-      <dl class="mt-6 space-y-4 text-zinc-700">
+      <dl class="mt-8 space-y-2 border-t border-zinc-200 pt-6 text-sm text-zinc-600">
         <div>
-          <dt class="font-semibold text-zinc-950">AEO (Answer Engine Optimization).</dt>
-          <dd>
-            Making your product the answer when a user asks a buyer-intent
-            question to an LLM, instead of just ranking on a search results
-            page.
-          </dd>
+          <dt class="inline font-semibold text-zinc-900">AEO:</dt>
+          <dd class="inline"> Answer Engine Optimization. Getting picked up in AI answers.</dd>
         </div>
         <div>
-          <dt class="font-semibold text-zinc-950">GEO (Generative Engine Optimization).</dt>
-          <dd>
-            Same idea, broader framing: shaping what generative models say
-            about your category and your product.
-          </dd>
+          <dt class="inline font-semibold text-zinc-900">GEO:</dt>
+          <dd class="inline"> Generative Engine Optimization. Same idea, different acronym.</dd>
         </div>
       </dl>
     </section>
 
-    <!-- Waitlist (secondary) -->
-    <section class="mb-16 rounded-lg border border-zinc-200 bg-zinc-50 p-6">
+    <!-- 7. Waitlist (repeated) -->
+    <section class="mb-20 rounded-lg border border-zinc-200 bg-zinc-50 p-6">
       <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
         Want one when audits open up?
       </h2>
       <p class="mt-2 text-zinc-700">
-        Drop your email. I will send one note when Periscope is ready.
+        Drop your email. I will message you the moment the first slots open.
       </p>
       <!-- TODO: Buttondown embed form goes here -->
       <form class="mt-4 flex flex-col gap-2 sm:flex-row">
@@ -214,38 +316,43 @@ const description =
           type="email"
           required
           placeholder="you@yourcompany.com"
+          aria-label="Email address"
           class="flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:outline-none focus:ring-1 focus:ring-zinc-900"
         />
         <button
           type="submit"
           class="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
         >
-          Join the waitlist
+          Email me when audits open
         </button>
       </form>
-    </section>
-
-    <!-- About -->
-    <section class="mb-16">
-      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        About
-      </h2>
-      <p class="mt-4 text-zinc-700">
-        I am Andrei. I build small, focused tools for SaaS founders and run
-        experiments in public at <a href="https://surdu.de" class="underline underline-offset-4 hover:text-zinc-950">surdu.de</a>.
-        Periscope is one of them.
+      <p class="mt-3 text-xs text-zinc-500">
+        First batch will be small. I will keep the queue honest.
       </p>
     </section>
 
-    <!-- Footer -->
+    <!-- 8. About -->
+    <section class="mb-16">
+      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
+        Who is running this.
+      </h2>
+      <p class="mt-4 text-zinc-700">
+        I am Andrei. I build small, useful experiments under
+        <a href="https://surdu.de" class="underline underline-offset-4 hover:text-zinc-950">surdu.de</a>.
+        Periscope is one of them. If you want to see the others, the hub is
+        one click away.
+      </p>
+    </section>
+
+    <!-- 9. Footer -->
     <footer class="mt-20 border-t border-zinc-200 pt-8 text-sm text-zinc-500">
-      <div class="flex flex-col gap-2 sm:flex-row sm:justify-between">
-        <p>
-          <a href="https://surdu.de" class="hover:text-zinc-900">surdu.de</a>
-        </p>
-        <p>
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <div class="flex flex-col gap-1 sm:flex-row sm:gap-6">
+          <a href="https://surdu.de" class="hover:text-zinc-900">surdu.de hub</a>
+          <a href="https://surdu.de" class="hover:text-zinc-900">other experiments</a>
           <a href="mailto:andrei@surdu.eu" class="hover:text-zinc-900">andrei@surdu.eu</a>
-        </p>
+        </div>
+        <p class="text-xs text-zinc-400">&copy; {new Date().getFullYear()} Andrei Surdu</p>
       </div>
     </footer>
   </main>
