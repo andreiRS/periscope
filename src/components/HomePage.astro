@@ -159,10 +159,11 @@ const privacyHref = localePath(lang, 'privacy');
         </h2>
 
         <div class="mt-12 grid grid-cols-1 gap-px bg-[var(--color-rule)] md:grid-cols-3 md:border md:border-[var(--color-rule)]">
-          {t.report.cards.map((card) => (
+          {t.report.cards.map((card, i) => (
             <article class="bg-[var(--color-paper)] p-7">
-              <p class="font-display-italic text-sm text-[var(--color-accent)]">{card.roman}</p>
-              <h3 class="mt-2 font-display text-2xl text-[var(--color-ink)]">{card.title}</h3>
+              <h3 class="font-display text-2xl text-[var(--color-ink)]">
+                <span class="font-display-italic text-[var(--color-accent)]">{i + 1}.</span> {card.title}
+              </h3>
               <p class="mt-4 text-sm leading-relaxed text-[var(--color-ink-muted)]">{card.body}</p>
             </article>
           ))}
@@ -257,10 +258,9 @@ const privacyHref = localePath(lang, 'privacy');
         </h2>
 
         <ol class="mt-12 grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2">
-          {t.fieldNotes.notes.map((note) => (
-            <li>
-              <p class="font-display-italic text-2xl text-[var(--color-accent)]">{note.roman}</p>
-              <p class="mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]">{note.body}</p>
+          {t.fieldNotes.notes.map((note, i) => (
+            <li class="text-base leading-relaxed text-[var(--color-ink-muted)]">
+              <span class="font-display-italic text-[var(--color-accent)]">{i + 1}.</span> {note.body}
             </li>
           ))}
         </ol>

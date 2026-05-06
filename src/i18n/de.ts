@@ -64,17 +64,14 @@ export const de: Dictionary = {
     },
     cards: [
       {
-        roman: 'i.',
         title: 'Sichtbarkeits-Matrix',
         body: 'Jeder Prompt, jeder LLM, jede genannte Marke. Deine Marke vs. die Konkurrenz, auf einen Blick.',
       },
       {
-        roman: 'ii.',
         title: 'Wettbewerber-Surface',
         body: 'Die Marken, die den Slot füllen, den dein Produkt füllen sollte, sortiert nach Häufigkeit.',
       },
       {
-        roman: 'iii.',
         title: 'Priorisierte Fix-Liste',
         body: 'Sortiert nach Aufwand: 15 Min., 1 Tag, 1 Woche. Jeder Fix verbunden mit einer wahrscheinlichen Ursache: Positioning, Schema, Content-Abdeckung oder Drittanbieter-Erwähnungen.',
       },
@@ -127,19 +124,15 @@ export const de: Dictionary = {
     },
     notes: [
       {
-        roman: 'i.',
         body: 'LLMs liefern für denselben Prompt unterschiedliche Markensets. Du kannst nicht für "AI-Search" als einen einzelnen Kanal optimieren.',
       },
       {
-        roman: 'ii.',
         body: 'Vendor-publizierte Vergleichsinhalte ("X vs Y vs Z"-Listicles auf dem eigenen Vendor-Blog) sind aktuell der zuverlässigste Weg rein.',
       },
       {
-        roman: 'iii.',
         body: 'API- und Consumer-Chat-Outputs divergieren. Consumer-UIs ziehen ggf. Live-Web-Search; APIs oft nicht. Beides braucht Tracking.',
       },
       {
-        roman: 'iv.',
         body: 'Fixes brauchen Wochen, bis sie in LLM-Outputs auftauchen. Re-Runs zählen mehr als One-Shots.',
       },
     ],

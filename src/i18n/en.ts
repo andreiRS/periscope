@@ -60,17 +60,14 @@ export const en = {
     },
     cards: [
       {
-        roman: 'i.',
         title: 'Visibility matrix',
         body: 'Every prompt, every LLM, every brand named. Your brand vs. the competition, at a glance.',
       },
       {
-        roman: 'ii.',
         title: 'Competitor surface',
         body: 'The named brands filling the slot your product should fill, sorted by frequency.',
       },
       {
-        roman: 'iii.',
         title: 'Prioritized fix list',
         body: 'Ranked by effort: 15 min, 1 day, 1 week. Each fix tied to a likely cause: positioning, schema, content coverage, or third-party mentions.',
       },
@@ -123,19 +120,15 @@ export const en = {
     },
     notes: [
       {
-        roman: 'i.',
         body: 'LLMs return different brand sets for the same prompt. You cannot optimize for "AI search" as a single channel.',
       },
       {
-        roman: 'ii.',
         body: 'Vendor-published comparison content ("X vs Y vs Z" listicles on the vendor\'s own blog) is currently the most reliable way in.',
       },
       {
-        roman: 'iii.',
         body: 'API and consumer-chat outputs diverge. Consumer UIs may pull live web search; APIs often will not. Both need tracking.',
       },
       {
-        roman: 'iv.',
         body: 'Fixes take weeks to surface in LLM outputs. Re-runs matter more than one-shots.',
       },
     ],
