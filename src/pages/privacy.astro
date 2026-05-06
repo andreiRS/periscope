@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = 'Privacy Policy | Periscope';
+const description =
+  'Privacy policy for periscope.surdu.de, covering what data is collected when you join the waitlist and how it is processed under the GDPR.';
+---
+
+<Layout title={title} description={description}>
+  <main class="mx-auto max-w-3xl px-6 py-16 md:py-24">
+    <p class="mb-4 text-sm font-medium uppercase tracking-wider text-zinc-500">
+      Legal
+    </p>
+    <h1 class="text-3xl font-semibold tracking-tight text-zinc-950 md:text-4xl">
+      Privacy Policy
+    </h1>
+    <p class="mt-4 text-sm text-zinc-500">
+      Plain language first, formal text below. Information per Art. 13 and 14 GDPR.
+    </p>
+
+    <section class="mt-10 space-y-8 text-zinc-700">
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-950">Short version</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-6 leading-relaxed">
+          <li>
+            If you submit your email to the waitlist, it goes to Tally (an
+            EU-based form provider) and to me. That is the only personal data
+            this site collects from you directly.
+          </li>
+          <li>
+            I will email you once when audits open up, and not again unless you
+            ask.
+          </li>
+          <li>
+            No analytics, no tracking pixels, no advertising cookies. The site
+            itself sets no cookies for tracking.
+          </li>
+          <li>
+            You can ask me at any time to delete your email. One message to
+            <a href="mailto:andrei@surdu.eu" class="underline underline-offset-4 hover:text-zinc-950">andrei@surdu.eu</a>
+            is enough.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-950">1. Controller</h2>
+        <p class="mt-3 leading-relaxed">
+          Andrei Surdu<br />
+          [STREET AND HOUSE NUMBER]<br />
+          [POSTAL CODE] [CITY], Germany<br />
+          Email:
+          <a href="mailto:andrei@surdu.eu" class="underline underline-offset-4 hover:text-zinc-950">andrei@surdu.eu</a>
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-950">
+          2. What data is processed and why
+        </h2>
+        <h3 class="mt-3 font-semibold text-zinc-950">2.1 Waitlist signup</h3>
+        <p class="mt-2 leading-relaxed">
+          When you submit your email through the waitlist form on this page,
+          the following is processed:
+        </p>
+        <ul class="mt-2 list-disc space-y-1 pl-6 leading-relaxed">
+          <li>your email address;</li>
+          <li>
+            a non-personal source tag indicating which CTA you used (e.g.
+            "hero" or "repeat");
+          </li>
+          <li>submission timestamp.</li>
+        </ul>
+        <p class="mt-2 leading-relaxed">
+          <strong class="font-semibold text-zinc-950">Purpose:</strong>
+          to notify you once when Periscope audits open up.
+        </p>
+        <p class="mt-2 leading-relaxed">
+          <strong class="font-semibold text-zinc-950">Legal basis:</strong>
+          Art. 6 (1) (a) GDPR (consent, given by submitting the form).
+        </p>
+        <p class="mt-2 leading-relaxed">
+          <strong class="font-semibold text-zinc-950">Retention:</strong>
+          until you withdraw consent, or until the waitlist purpose is no
+          longer relevant (whichever comes first), at which point the address
+          is deleted.
+        </p>
+
+        <h3 class="mt-6 font-semibold text-zinc-950">2.2 Server logs</h3>
+        <p class="mt-2 leading-relaxed">
+          The site is hosted on GitHub Pages. GitHub Inc. processes standard
+          server logs (including IP address, timestamp, user agent, requested
+          URL) for the purpose of operating, securing, and protecting the
+          service.
+        </p>
+        <p class="mt-2 leading-relaxed">
+          <strong class="font-semibold text-zinc-950">Legal basis:</strong>
+          Art. 6 (1) (f) GDPR (legitimate interest in operating a stable and
+          secure website).
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-950">3. Recipients and processors</h2>
+        <p class="mt-3 leading-relaxed">
+          Personal data is shared with the following processors strictly to
+          deliver the service described above:
+        </p>
+        <ul class="mt-3 list-disc space-y-2 pl-6 leading-relaxed">
+          <li>
+            <strong class="font-semibold text-zinc-950">Tally Forms BV</strong>,
+            Belgium. Form provider that captures and stores waitlist
+            submissions. EU-based, GDPR-compliant, DPA in place. See
+            <a href="https://tally.so/help/privacy-policy" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">Tally's privacy policy</a>.
+          </li>
+          <li>
+            <strong class="font-semibold text-zinc-950">GitHub, Inc.</strong>,
+            88 Colin P Kelly Jr Street, San Francisco, CA 94107, USA. Hosting
+            provider for static site delivery. Cross-border transfer is covered
+            by the EU&ndash;U.S. Data Privacy Framework. See
+            <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">GitHub's privacy statement</a>.
+          </li>
+          <li>
+            <strong class="font-semibold text-zinc-950">INWX GmbH &amp; Co. KG</strong>,
+            domain registrar for surdu.de.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-950">4. Cookies and tracking</h2>
+        <p class="mt-3 leading-relaxed">
+          This site sets no cookies for analytics, advertising, or tracking.
+          No third-party analytics tools are loaded.
+        </p>
+        <p class="mt-2 leading-relaxed">
+          The Tally embed may set strictly necessary, functional cookies or
+          local storage entries to support form interaction (e.g. preventing
+          duplicate submission). These are exempt from consent under § 25 (2)
+          TTDSG / TDDDG.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-950">5. Your rights</h2>
+        <p class="mt-3 leading-relaxed">
+          Under the GDPR you have the right to:
+        </p>
+        <ul class="mt-2 list-disc space-y-1 pl-6 leading-relaxed">
+          <li>access your personal data (Art. 15);</li>
+          <li>have inaccurate data corrected (Art. 16);</li>
+          <li>have your data erased (Art. 17);</li>
+          <li>restrict processing (Art. 18);</li>
+          <li>data portability (Art. 20);</li>
+          <li>object to processing based on legitimate interest (Art. 21);</li>
+          <li>withdraw consent at any time, without affecting the lawfulness of prior processing (Art. 7 (3)).</li>
+        </ul>
+        <p class="mt-3 leading-relaxed">
+          To exercise any of these, email
+          <a href="mailto:andrei@surdu.eu" class="underline underline-offset-4 hover:text-zinc-950">andrei@surdu.eu</a>.
+        </p>
+        <p class="mt-3 leading-relaxed">
+          You also have the right to lodge a complaint with a data protection
+          supervisory authority. The competent authority for this site is
+          [INSERT THE COMPETENT GERMAN STATE AUTHORITY FOR YOUR RESIDENCE,
+          e.g. Berlin: Berliner Beauftragte f&uuml;r Datenschutz und
+          Informationsfreiheit].
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-950">6. International transfers</h2>
+        <p class="mt-3 leading-relaxed">
+          Personal data submitted to the waitlist is processed within the EU
+          by Tally Forms BV. Hosting via GitHub Pages may involve transfer to
+          the United States; this transfer is covered by the
+          EU&ndash;U.S. Data Privacy Framework, to which GitHub Inc. is
+          certified.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="text-xl font-semibold text-zinc-950">7. Changes to this policy</h2>
+        <p class="mt-3 leading-relaxed">
+          This policy may be updated as the site evolves (for example, when
+          an email service provider is added). The current version is always
+          available at this URL. Material changes will be reflected in the
+          "Last updated" date below.
+        </p>
+      </div>
+
+      <p class="text-sm text-zinc-500">Last updated: [YYYY-MM-DD]</p>
+    </section>
+
+    <p class="mt-12 text-sm">
+      <a href="/" class="underline underline-offset-4 hover:text-zinc-950">
+        &larr; Back to Periscope
+      </a>
+    </p>
+  </main>
+</Layout>

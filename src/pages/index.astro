@@ -86,273 +86,434 @@ const matrix: { prompt: string; cells: Cell[] }[] = [
 ---
 
 <Layout title={title} description={description}>
-  <main class="mx-auto max-w-3xl px-6 py-16 md:py-24">
-    <!-- 1. Hero -->
-    <section class="mb-16">
-      <p class="mb-4 text-sm font-medium uppercase tracking-wider text-zinc-500">
-        LLM Visibility Audit. Launching soon.
+  <main class="mx-auto max-w-5xl px-6 py-20 md:px-10 md:py-28 lg:px-16">
+    <!-- Masthead -->
+    <header class="mb-16 flex items-baseline justify-between border-b border-[var(--color-rule)] pb-6 md:mb-24">
+      <a href="/" class="font-display text-2xl text-[var(--color-ink)]">
+        Periscope
+      </a>
+      <p class="section-label hidden sm:block">
+        An LLM Visibility Audit
       </p>
-      <h1 class="text-4xl font-semibold leading-tight tracking-tight text-zinc-950 md:text-5xl">
-        Who is ChatGPT recommending to your customers instead of you?
-      </h1>
-      <p class="mt-6 text-lg leading-relaxed text-zinc-700">
-        One founder ran the numbers on their own product. Across 47
-        buyer-intent prompts, they got
-        <strong class="font-semibold text-zinc-950">3 mentions</strong>. A
-        competitor they had never heard of got
-        <strong class="font-semibold text-zinc-950">19</strong>. Periscope
-        shows you that gap across ChatGPT, Claude, Perplexity, and Gemini,
-        plus the fixes most likely to close it.
-      </p>
+    </header>
 
-      <!-- Primary CTA -->
-      <div class="mt-10 rounded-lg border border-zinc-200 bg-zinc-50 p-6">
-        <!-- TODO: Buttondown embed form goes here -->
-        <form class="flex flex-col gap-2 sm:flex-row">
-          <input
-            type="email"
-            required
-            placeholder="you@yourcompany.com"
-            aria-label="Email address"
-            class="flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:outline-none focus:ring-1 focus:ring-zinc-900"
-          />
-          <button
-            type="submit"
-            class="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+    <!-- 1. Hero -->
+    <section class="mb-28 md:mb-36" aria-labelledby="hero-heading">
+      <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+        <aside class="mb-6 md:col-span-2 md:mb-0">
+          <p class="section-label">01 / Hero</p>
+          <p class="mt-3 text-xs italic text-[var(--color-ink-soft)] font-display-italic">
+            Launching soon
+          </p>
+        </aside>
+
+        <div class="md:col-span-10">
+          <h1
+            id="hero-heading"
+            class="font-display text-5xl leading-[1.05] text-[var(--color-ink)] md:text-7xl lg:text-[5.5rem] lg:leading-[0.98]"
           >
-            Email me when audits open
-          </button>
-        </form>
-        <p class="mt-3 text-xs text-zinc-500">
-          No spam. One email when audits open up, then nothing else.
-        </p>
+            Who is ChatGPT
+            <span class="font-display-italic text-[var(--color-accent)]">recommending</span>
+            to your customers instead of you?
+          </h1>
+
+          <div class="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-12">
+            <p class="text-lg leading-relaxed text-[var(--color-ink-muted)] md:col-span-7 md:text-xl">
+              One founder ran the numbers on their own product. Across 47
+              buyer-intent prompts, they got
+              <strong class="font-semibold text-[var(--color-ink)]">3 mentions</strong>. A
+              competitor they had never heard of got
+              <strong class="font-semibold text-[var(--color-ink)]">19</strong>. Periscope
+              shows you that gap across ChatGPT, Claude, Perplexity, and Gemini,
+              plus the fixes most likely to close it.
+            </p>
+
+            <!-- Primary CTA -->
+            <div class="md:col-span-5">
+              <div class="border-t border-[var(--color-ink)] pt-5">
+                <p class="section-label">The Waitlist</p>
+                <div
+                  class="mt-4"
+                  data-tally-src="https://tally.so/embed/RG8eBJ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&source=hero"
+                  style="min-height:160px;width:100%;"
+                ></div>
+                <p class="mt-3 text-xs text-[var(--color-ink-soft)]">
+                  No spam. One email when audits open up, then nothing else.
+                  Your address goes to Tally (EU-based form provider) and to
+                  me. See the
+                  <a href="/privacy" class="link-underline">privacy policy</a>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- 2. The artifact -->
-    <section class="mb-20">
-      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        Here is what lands in your inbox.
-      </h2>
-      <div class="mt-6 overflow-x-auto rounded-lg border border-zinc-200 bg-white">
-        <table class="w-full min-w-[640px] border-collapse text-sm">
-          <thead>
-            <tr class="border-b border-zinc-200 bg-zinc-50 text-left">
-              <th class="px-4 py-3 font-medium text-zinc-600">Prompt</th>
-              {llms.map((llm) => (
-                <th class="px-4 py-3 text-center font-medium text-zinc-600">
-                  {llm}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {matrix.map((row, i) => (
-              <tr class={i < matrix.length - 1 ? 'border-b border-zinc-100' : ''}>
-                <td class="px-4 py-3 text-zinc-700">{row.prompt}</td>
-                {row.cells.map((cell) => (
-                  <td class="px-4 py-3 text-center">
-                    {cell.empty ? (
-                      <span class="text-zinc-300">&ndash;</span>
-                    ) : cell.you ? (
-                      <span class="inline-flex items-center rounded-md bg-emerald-100 px-2 py-1 text-xs font-semibold text-emerald-900 ring-1 ring-inset ring-emerald-200">
-                        {cell.brand}
-                      </span>
-                    ) : (
-                      <span class="inline-flex items-center rounded-md bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-700 ring-1 ring-inset ring-zinc-200">
-                        {cell.brand}
-                      </span>
-                    )}
-                  </td>
-                ))}
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <section class="mb-28 md:mb-36" aria-labelledby="artifact-heading">
+      <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+        <aside class="mb-6 md:col-span-2 md:mb-0">
+          <p class="section-label">02 / The artifact</p>
+        </aside>
+
+        <div class="md:col-span-10">
+          <h2
+            id="artifact-heading"
+            class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+          >
+            Here is what lands in your inbox.
+          </h2>
+
+          <figure class="mt-12">
+            <div class="overflow-x-auto border-t border-b border-[var(--color-ink)]">
+              <table class="w-full min-w-[640px] border-collapse text-sm">
+                <thead>
+                  <tr class="border-b border-[var(--color-rule)]">
+                    <th class="px-4 py-5 text-left font-display-italic text-base font-normal text-[var(--color-ink-muted)]">
+                      Prompt
+                    </th>
+                    {llms.map((llm) => (
+                      <th class="px-4 py-5 text-center font-display-italic text-base font-normal text-[var(--color-ink-muted)]">
+                        {llm}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {matrix.map((row, i) => (
+                    <tr class={i < matrix.length - 1 ? 'border-b border-[var(--color-rule-soft)]' : ''}>
+                      <td class="px-4 py-5 text-[var(--color-ink)]">
+                        <span class="font-display-italic text-base">{row.prompt}</span>
+                      </td>
+                      {row.cells.map((cell) => (
+                        <td class="px-4 py-5 text-center">
+                          {cell.empty ? (
+                            <span class="text-[var(--color-ink-soft)]">&ndash;</span>
+                          ) : cell.you ? (
+                            <span class="inline-flex items-center bg-[var(--color-accent)] px-2.5 py-1 text-xs font-semibold tracking-wide text-[var(--color-paper)]">
+                              {cell.brand}
+                            </span>
+                          ) : (
+                            <span class="text-sm text-[var(--color-ink-muted)]">
+                              {cell.brand}
+                            </span>
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <figcaption class="mt-5 text-sm italic text-[var(--color-ink-soft)] font-display-italic">
+              Real format. Anonymized data. Yours arrives as Markdown or PDF, inside
+              2 business days of URL submission.
+            </figcaption>
+          </figure>
+        </div>
       </div>
-      <p class="mt-4 text-sm text-zinc-600">
-        Real format. Anonymized data. Yours arrives as Markdown or PDF, inside
-        2 business days of URL submission.
-      </p>
     </section>
 
     <!-- 3. What is in the report -->
-    <section class="mb-20">
-      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        Three things, in one document.
-      </h2>
-      <div class="mt-6 grid gap-4 md:grid-cols-3">
-        <div class="rounded-lg border border-zinc-200 p-5">
-          <h3 class="font-semibold text-zinc-950">Visibility matrix</h3>
-          <p class="mt-2 text-sm leading-relaxed text-zinc-700">
-            Every prompt, every LLM, every brand named. Your brand vs. the
-            competition, at a glance.
-          </p>
-        </div>
-        <div class="rounded-lg border border-zinc-200 p-5">
-          <h3 class="font-semibold text-zinc-950">Competitor surface</h3>
-          <p class="mt-2 text-sm leading-relaxed text-zinc-700">
-            The named brands filling the slot your product should fill, sorted
-            by frequency.
-          </p>
-        </div>
-        <div class="rounded-lg border border-zinc-200 p-5">
-          <h3 class="font-semibold text-zinc-950">Prioritized fix list</h3>
-          <p class="mt-2 text-sm leading-relaxed text-zinc-700">
-            Ranked by effort: 15 min, 1 day, 1 week. Each fix tied to a likely
-            cause: positioning, schema, content coverage, or third-party
-            mentions.
-          </p>
+    <section class="mb-28 md:mb-36" aria-labelledby="report-heading">
+      <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+        <aside class="mb-6 md:col-span-2 md:mb-0">
+          <p class="section-label">03 / The report</p>
+        </aside>
+
+        <div class="md:col-span-10">
+          <h2
+            id="report-heading"
+            class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+          >
+            Three things,
+            <span class="font-display-italic">in one document.</span>
+          </h2>
+
+          <div class="mt-12 grid grid-cols-1 gap-px bg-[var(--color-rule)] md:grid-cols-3 md:border md:border-[var(--color-rule)]">
+            <article class="bg-[var(--color-paper)] p-7">
+              <p class="font-display-italic text-sm text-[var(--color-accent)]">i.</p>
+              <h3 class="mt-2 font-display text-2xl text-[var(--color-ink)]">
+                Visibility matrix
+              </h3>
+              <p class="mt-4 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                Every prompt, every LLM, every brand named. Your brand vs. the
+                competition, at a glance.
+              </p>
+            </article>
+            <article class="bg-[var(--color-paper)] p-7">
+              <p class="font-display-italic text-sm text-[var(--color-accent)]">ii.</p>
+              <h3 class="mt-2 font-display text-2xl text-[var(--color-ink)]">
+                Competitor surface
+              </h3>
+              <p class="mt-4 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                The named brands filling the slot your product should fill, sorted
+                by frequency.
+              </p>
+            </article>
+            <article class="bg-[var(--color-paper)] p-7">
+              <p class="font-display-italic text-sm text-[var(--color-accent)]">iii.</p>
+              <h3 class="mt-2 font-display text-2xl text-[var(--color-ink)]">
+                Prioritized fix list
+              </h3>
+              <p class="mt-4 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                Ranked by effort: 15 min, 1 day, 1 week. Each fix tied to a likely
+                cause: positioning, schema, content coverage, or third-party
+                mentions.
+              </p>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- 4. How it works -->
-    <section class="mb-20">
-      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        From URL to report in 2 business days.
-      </h2>
-      <ol class="mt-6 space-y-3 text-zinc-700">
-        <li class="flex gap-3">
-          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">1</span>
-          <span>You submit a landing page URL.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">2</span>
-          <span>I generate 30 to 50 buyer-intent prompts spanning discovery, comparison, and evaluation.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">3</span>
-          <span>Every prompt runs across ChatGPT, Claude, Perplexity, and Gemini.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">4</span>
-          <span>Mentions are tallied per brand per LLM into your visibility matrix.</span>
-        </li>
-        <li class="flex gap-3">
-          <span class="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-zinc-900 text-xs font-semibold text-white">5</span>
-          <span>Your site is inspected against the 2 to 3 most likely causes of low visibility, and fixes are ranked by effort.</span>
-        </li>
-      </ol>
+    <section class="mb-28 md:mb-36" aria-labelledby="process-heading">
+      <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+        <aside class="mb-6 md:col-span-2 md:mb-0">
+          <p class="section-label">04 / Process</p>
+        </aside>
+
+        <div class="md:col-span-10">
+          <h2
+            id="process-heading"
+            class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+          >
+            From URL to report
+            <span class="font-display-italic">in 2 business days.</span>
+          </h2>
+
+          <ol class="mt-12 divide-y divide-[var(--color-rule)] border-t border-b border-[var(--color-rule)]">
+            <li class="grid grid-cols-12 items-baseline gap-6 py-6">
+              <span class="col-span-2 font-display-italic text-2xl text-[var(--color-accent)] md:col-span-1 md:text-3xl">01</span>
+              <p class="col-span-10 text-base leading-relaxed text-[var(--color-ink)] md:col-span-11 md:text-lg">
+                You submit a landing page URL.
+              </p>
+            </li>
+            <li class="grid grid-cols-12 items-baseline gap-6 py-6">
+              <span class="col-span-2 font-display-italic text-2xl text-[var(--color-accent)] md:col-span-1 md:text-3xl">02</span>
+              <p class="col-span-10 text-base leading-relaxed text-[var(--color-ink)] md:col-span-11 md:text-lg">
+                I generate 30 to 50 buyer-intent prompts spanning discovery, comparison, and evaluation.
+              </p>
+            </li>
+            <li class="grid grid-cols-12 items-baseline gap-6 py-6">
+              <span class="col-span-2 font-display-italic text-2xl text-[var(--color-accent)] md:col-span-1 md:text-3xl">03</span>
+              <p class="col-span-10 text-base leading-relaxed text-[var(--color-ink)] md:col-span-11 md:text-lg">
+                Every prompt runs across ChatGPT, Claude, Perplexity, and Gemini.
+              </p>
+            </li>
+            <li class="grid grid-cols-12 items-baseline gap-6 py-6">
+              <span class="col-span-2 font-display-italic text-2xl text-[var(--color-accent)] md:col-span-1 md:text-3xl">04</span>
+              <p class="col-span-10 text-base leading-relaxed text-[var(--color-ink)] md:col-span-11 md:text-lg">
+                Mentions are tallied per brand per LLM into your visibility matrix.
+              </p>
+            </li>
+            <li class="grid grid-cols-12 items-baseline gap-6 py-6">
+              <span class="col-span-2 font-display-italic text-2xl text-[var(--color-accent)] md:col-span-1 md:text-3xl">05</span>
+              <p class="col-span-10 text-base leading-relaxed text-[var(--color-ink)] md:col-span-11 md:text-lg">
+                Your site is inspected against the 2 to 3 most likely causes of low visibility, and fixes are ranked by effort.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </div>
     </section>
 
     <!-- 5. Early findings -->
-    <section class="mb-20">
-      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        What early runs surfaced.
-      </h2>
-      <div class="mt-6 space-y-5 text-zinc-700">
-        <p>
-          <strong class="font-semibold text-zinc-950">0 out of 115.</strong>
-          An indie SaaS 4 days post-launch. Zero mentions across every
-          prompt-LLM combination. The cold start is real and measurable.
-        </p>
-        <p>
-          <strong class="font-semibold text-zinc-950">6 out of 160 (3.75%).</strong>
-          A Shopify-adjacent tool with active users. The audit also surfaced a
-          positioning gap between their landing page and their app store
-          listing that was invisible to them before the run.
-        </p>
-        <p>
-          <strong class="font-semibold text-zinc-950">Cross-LLM brand variance.</strong>
-          The same prompt to ChatGPT, Claude, Perplexity, and Gemini returns
-          different brand sets. There is no single "AI search" channel to
-          optimize for.
-        </p>
+    <section class="mb-28 md:mb-36" aria-labelledby="findings-heading">
+      <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+        <aside class="mb-6 md:col-span-2 md:mb-0">
+          <p class="section-label">05 / Early findings</p>
+        </aside>
+
+        <div class="md:col-span-10">
+          <h2
+            id="findings-heading"
+            class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+          >
+            What early runs
+            <span class="font-display-italic">surfaced.</span>
+          </h2>
+
+          <div class="mt-12 max-w-2xl space-y-10 text-lg leading-relaxed text-[var(--color-ink-muted)]">
+            <p class="border-l-2 border-[var(--color-accent)] pl-6">
+              <span class="block font-display text-3xl text-[var(--color-ink)]">0 out of 115.</span>
+              <span class="mt-2 block">
+                An indie SaaS 4 days post-launch. Zero mentions across every
+                prompt-LLM combination. The cold start is real and measurable.
+              </span>
+            </p>
+            <p class="border-l-2 border-[var(--color-accent)] pl-6">
+              <span class="block font-display text-3xl text-[var(--color-ink)]">6 out of 160 (3.75%).</span>
+              <span class="mt-2 block">
+                A Shopify-adjacent tool with active users. The audit also surfaced a
+                positioning gap between their landing page and their app store
+                listing that was invisible to them before the run.
+              </span>
+            </p>
+            <p class="border-l-2 border-[var(--color-accent)] pl-6">
+              <span class="block font-display text-3xl text-[var(--color-ink)]">Cross-LLM brand variance.</span>
+              <span class="mt-2 block">
+                The same prompt to ChatGPT, Claude, Perplexity, and Gemini returns
+                different brand sets. There is no single "AI search" channel to
+                optimize for.
+              </span>
+            </p>
+          </div>
+
+          <p class="mt-10 max-w-2xl border-t border-[var(--color-rule)] pt-5 font-display-italic text-sm text-[var(--color-ink-soft)]">
+            Small sample from beta. The numbers will move; the patterns probably
+            will not.
+          </p>
+        </div>
       </div>
-      <p class="mt-6 text-sm italic text-zinc-500">
-        Small sample from beta. The numbers will move; the patterns probably
-        will not.
-      </p>
     </section>
 
     <!-- 6. What I have learned -->
-    <section class="mb-20">
-      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        Four notes from the runs so far.
-      </h2>
-      <ul class="mt-6 space-y-4 text-zinc-700">
-        <li>
-          LLMs return different brand sets for the same prompt. You cannot
-          optimize for "AI search" as a single channel.
-        </li>
-        <li>
-          Vendor-published comparison content ("X vs Y vs Z" listicles on the
-          vendor's own blog) is currently the most reliable way in.
-        </li>
-        <li>
-          API and consumer-chat outputs diverge. Consumer UIs may pull live
-          web search; APIs often will not. Both need tracking.
-        </li>
-        <li>
-          Fixes take weeks to surface in LLM outputs. Re-runs matter more than
-          one-shots.
-        </li>
-      </ul>
+    <section class="mb-28 md:mb-36" aria-labelledby="notes-heading">
+      <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+        <aside class="mb-6 md:col-span-2 md:mb-0">
+          <p class="section-label">06 / Field notes</p>
+        </aside>
 
-      <dl class="mt-8 space-y-2 border-t border-zinc-200 pt-6 text-sm text-zinc-600">
-        <div>
-          <dt class="inline font-semibold text-zinc-900">AEO:</dt>
-          <dd class="inline"> Answer Engine Optimization. Getting picked up in AI answers.</dd>
+        <div class="md:col-span-10">
+          <h2
+            id="notes-heading"
+            class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+          >
+            Four notes
+            <span class="font-display-italic">from the runs so far.</span>
+          </h2>
+
+          <ol class="mt-12 grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2">
+            <li>
+              <p class="font-display-italic text-2xl text-[var(--color-accent)]">i.</p>
+              <p class="mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]">
+                LLMs return different brand sets for the same prompt. You cannot
+                optimize for "AI search" as a single channel.
+              </p>
+            </li>
+            <li>
+              <p class="font-display-italic text-2xl text-[var(--color-accent)]">ii.</p>
+              <p class="mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]">
+                Vendor-published comparison content ("X vs Y vs Z" listicles on the
+                vendor's own blog) is currently the most reliable way in.
+              </p>
+            </li>
+            <li>
+              <p class="font-display-italic text-2xl text-[var(--color-accent)]">iii.</p>
+              <p class="mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]">
+                API and consumer-chat outputs diverge. Consumer UIs may pull live
+                web search; APIs often will not. Both need tracking.
+              </p>
+            </li>
+            <li>
+              <p class="font-display-italic text-2xl text-[var(--color-accent)]">iv.</p>
+              <p class="mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]">
+                Fixes take weeks to surface in LLM outputs. Re-runs matter more than
+                one-shots.
+              </p>
+            </li>
+          </ol>
+
+          <dl class="mt-14 grid grid-cols-1 gap-6 border-t border-[var(--color-rule)] pt-6 md:grid-cols-2">
+            <div>
+              <dt class="font-display-italic text-base text-[var(--color-ink)]">AEO.</dt>
+              <dd class="mt-1 text-sm text-[var(--color-ink-muted)]">
+                Answer Engine Optimization. Getting picked up in AI answers.
+              </dd>
+            </div>
+            <div>
+              <dt class="font-display-italic text-base text-[var(--color-ink)]">GEO.</dt>
+              <dd class="mt-1 text-sm text-[var(--color-ink-muted)]">
+                Generative Engine Optimization. Same idea, different acronym.
+              </dd>
+            </div>
+          </dl>
         </div>
-        <div>
-          <dt class="inline font-semibold text-zinc-900">GEO:</dt>
-          <dd class="inline"> Generative Engine Optimization. Same idea, different acronym.</dd>
-        </div>
-      </dl>
+      </div>
     </section>
 
     <!-- 7. Waitlist (repeated) -->
-    <section class="mb-20 rounded-lg border border-zinc-200 bg-zinc-50 p-6">
-      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        Want one when audits open up?
-      </h2>
-      <p class="mt-2 text-zinc-700">
-        Drop your email. I will message you the moment the first slots open.
-      </p>
-      <!-- TODO: Buttondown embed form goes here -->
-      <form class="mt-4 flex flex-col gap-2 sm:flex-row">
-        <input
-          type="email"
-          required
-          placeholder="you@yourcompany.com"
-          aria-label="Email address"
-          class="flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-zinc-900 focus:outline-none focus:ring-1 focus:ring-zinc-900"
-        />
-        <button
-          type="submit"
-          class="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800"
-        >
-          Email me when audits open
-        </button>
-      </form>
-      <p class="mt-3 text-xs text-zinc-500">
-        First batch will be small. I will keep the queue honest.
-      </p>
+    <section class="mb-28 md:mb-36" aria-labelledby="waitlist-heading">
+      <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+        <aside class="mb-6 md:col-span-2 md:mb-0">
+          <p class="section-label">07 / Waitlist</p>
+        </aside>
+
+        <div class="md:col-span-10">
+          <div class="border border-[var(--color-ink)] bg-[var(--color-paper-2)] p-8 md:p-12">
+            <h2
+              id="waitlist-heading"
+              class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+            >
+              Want one
+              <span class="font-display-italic">when audits open up?</span>
+            </h2>
+            <p class="mt-4 max-w-xl text-base leading-relaxed text-[var(--color-ink-muted)] md:text-lg">
+              Drop your email. I will message you the moment the first slots open.
+            </p>
+            <div
+              class="mt-8 max-w-xl"
+              data-tally-src="https://tally.so/embed/RG8eBJ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&source=repeat"
+              style="min-height:160px;width:100%;"
+            ></div>
+            <p class="mt-4 text-xs text-[var(--color-ink-soft)]">
+              First batch will be small. I will keep the queue honest.
+              Your address goes to Tally (EU-based form provider) and to me.
+              See the
+              <a href="/privacy" class="link-underline">privacy policy</a>.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- 8. About -->
-    <section class="mb-16">
-      <h2 class="text-2xl font-semibold tracking-tight text-zinc-950">
-        Who is running this.
-      </h2>
-      <p class="mt-4 text-zinc-700">
-        I am Andrei. I build small, useful experiments under
-        <a href="https://surdu.de" class="underline underline-offset-4 hover:text-zinc-950">surdu.de</a>.
-        Periscope is one of them. If you want to see the others, the hub is
-        one click away.
-      </p>
+    <section class="mb-24 md:mb-32" aria-labelledby="about-heading">
+      <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+        <aside class="mb-6 md:col-span-2 md:mb-0">
+          <p class="section-label">08 / Colophon</p>
+        </aside>
+
+        <div class="md:col-span-10">
+          <h2
+            id="about-heading"
+            class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+          >
+            Who is
+            <span class="font-display-italic">running this.</span>
+          </h2>
+          <p class="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--color-ink-muted)]">
+            I am Andrei. I am building Periscope after running early audits
+            across a handful of indie SaaS products and watching the same
+            patterns show up. If you want to talk before signing up, my inbox
+            is open at
+            <a href="mailto:andrei@surdu.eu" class="link-underline">andrei@surdu.eu</a>.
+          </p>
+        </div>
+      </div>
     </section>
 
     <!-- 9. Footer -->
-    <footer class="mt-20 border-t border-zinc-200 pt-8 text-sm text-zinc-500">
-      <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div class="flex flex-col gap-1 sm:flex-row sm:gap-6">
-          <a href="https://surdu.de" class="hover:text-zinc-900">surdu.de hub</a>
-          <a href="https://surdu.de" class="hover:text-zinc-900">other experiments</a>
-          <a href="mailto:andrei@surdu.eu" class="hover:text-zinc-900">andrei@surdu.eu</a>
+    <footer class="border-t border-[var(--color-ink)] pt-10">
+      <div class="grid grid-cols-1 gap-x-10 gap-y-6 md:grid-cols-12">
+        <div class="md:col-span-2">
+          <p class="font-display text-xl text-[var(--color-ink)]">Periscope</p>
         </div>
-        <p class="text-xs text-zinc-400">&copy; {new Date().getFullYear()} Andrei Surdu</p>
+        <div class="md:col-span-10">
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <nav class="flex flex-col gap-2 text-sm text-[var(--color-ink-muted)] sm:flex-row sm:gap-8">
+              <a href="mailto:andrei@surdu.eu" class="link-underline">andrei@surdu.eu</a>
+              <a href="/imprint" class="link-underline">Imprint</a>
+              <a href="/privacy" class="link-underline">Privacy</a>
+            </nav>
+            <p class="font-display-italic text-xs text-[var(--color-ink-soft)]">
+              &copy; {new Date().getFullYear()} Andrei Surdu
+            </p>
+          </div>
+        </div>
       </div>
     </footer>
   </main>

@@ -27,8 +27,42 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap"
+    />
   </head>
-  <body class="bg-white text-zinc-900 antialiased">
+  <body class="antialiased">
     <slot />
+
+    <script is:inline>
+      (function () {
+        var d = document;
+        var w = "https://tally.so/widgets/embed.js";
+        function load() {
+          if (typeof Tally !== "undefined") {
+            Tally.loadEmbeds();
+            return;
+          }
+          d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach(function (e) {
+            e.src = e.dataset.tallySrc;
+          });
+        }
+        if (d.querySelector("[data-tally-src], iframe[data-tally-src]") == null) return;
+        if (typeof Tally !== "undefined") {
+          load();
+        } else if (d.querySelector('script[src="' + w + '"]') == null) {
+          var s = d.createElement("script");
+          s.src = w;
+          s.async = true;
+          s.onload = load;
+          s.onerror = load;
+          d.body.appendChild(s);
+        }
+      })();
+    </script>
   </body>
 </html>
