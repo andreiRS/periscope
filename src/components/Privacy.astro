@@ -1,0 +1,112 @@
+---
+import SiteHeader from './SiteHeader.astro';
+import { localePath, type Dictionary, type Locale } from '../i18n';
+
+interface Props {
+  t: Dictionary;
+  lang: Locale;
+  path: string;
+}
+
+const { t, lang, path } = Astro.props;
+const homeHref = localePath(lang, '');
+---
+
+<main class="mx-auto max-w-3xl px-6 py-12 md:py-16">
+  <SiteHeader lang={lang} tagline={t.header.tagline} path={path} />
+
+  <p class="mb-4 text-sm font-medium uppercase tracking-wider text-zinc-500">
+    {t.privacy.eyebrow}
+  </p>
+  <h1 class="text-3xl font-semibold tracking-tight text-zinc-950 md:text-4xl">
+    {t.privacy.title}
+  </h1>
+  <p class="mt-4 text-sm text-zinc-500">{t.privacy.intro}</p>
+
+  <section class="mt-10 space-y-8 text-zinc-700">
+    <div>
+      <h2 class="text-xl font-semibold text-zinc-950">{t.privacy.short.heading}</h2>
+      <ul class="mt-3 list-disc space-y-2 pl-6 leading-relaxed">
+        {t.privacy.short.itemsHtml.map((html) => (
+          <li set:html={html}></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-zinc-950">{t.privacy.controller.heading}</h2>
+      <p class="mt-3 leading-relaxed" set:html={t.privacy.controller.bodyHtml}></p>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-zinc-950">{t.privacy.data.heading}</h2>
+      <h3 class="mt-3 font-semibold text-zinc-950">{t.privacy.data.waitlist.heading}</h3>
+      <p class="mt-2 leading-relaxed" set:html={t.privacy.data.waitlist.leadHtml}></p>
+      <p class="mt-2 leading-relaxed">
+        <strong class="font-semibold text-zinc-950">{t.privacy.data.waitlist.purposeLabel}</strong>
+        {' '}{t.privacy.data.waitlist.purpose}
+      </p>
+      <p class="mt-2 leading-relaxed">
+        <strong class="font-semibold text-zinc-950">{t.privacy.data.waitlist.legalBasisLabel}</strong>
+        {' '}{t.privacy.data.waitlist.legalBasis}
+      </p>
+      <p class="mt-2 leading-relaxed">
+        <strong class="font-semibold text-zinc-950">{t.privacy.data.waitlist.retentionLabel}</strong>
+        {' '}{t.privacy.data.waitlist.retention}
+      </p>
+
+      <h3 class="mt-6 font-semibold text-zinc-950">{t.privacy.data.logs.heading}</h3>
+      <p class="mt-2 leading-relaxed">{t.privacy.data.logs.body}</p>
+      <p class="mt-2 leading-relaxed">
+        <strong class="font-semibold text-zinc-950">{t.privacy.data.logs.legalBasisLabel}</strong>
+        {' '}{t.privacy.data.logs.legalBasis}
+      </p>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-zinc-950">{t.privacy.recipients.heading}</h2>
+      <p class="mt-3 leading-relaxed">{t.privacy.recipients.lead}</p>
+      <ul class="mt-3 list-disc space-y-2 pl-6 leading-relaxed">
+        {t.privacy.recipients.itemsHtml.map((html) => (
+          <li set:html={html}></li>
+        ))}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-zinc-950">{t.privacy.cookies.heading}</h2>
+      <p class="mt-3 leading-relaxed">{t.privacy.cookies.body}</p>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-zinc-950">{t.privacy.rights.heading}</h2>
+      <p class="mt-3 leading-relaxed">{t.privacy.rights.lead}</p>
+      <ul class="mt-2 list-disc space-y-1 pl-6 leading-relaxed">
+        {t.privacy.rights.items.map((item) => <li>{item}</li>)}
+      </ul>
+      <p class="mt-3 leading-relaxed" set:html={t.privacy.rights.exerciseHtml}></p>
+      <p class="mt-3 leading-relaxed" set:html={t.privacy.rights.complaintHtml}></p>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-zinc-950">{t.privacy.transfers.heading}</h2>
+      <p class="mt-3 leading-relaxed">{t.privacy.transfers.lead}</p>
+      <ul class="mt-2 list-disc space-y-2 pl-6 leading-relaxed">
+        {t.privacy.transfers.items.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-semibold text-zinc-950">{t.privacy.changes.heading}</h2>
+      <p class="mt-3 leading-relaxed">{t.privacy.changes.body}</p>
+    </div>
+
+    <p class="text-sm text-zinc-500">{t.privacy.lastUpdated}</p>
+  </section>
+
+  <p class="mt-12 text-sm">
+    <a href={homeHref} class="underline underline-offset-4 hover:text-zinc-950">
+      {t.privacy.backToHome}
+    </a>
+  </p>
+</main>

@@ -1,0 +1,23 @@
+---
+import LangSwitcher from './LangSwitcher.astro';
+import { localePath, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+  tagline: string;
+  path: string;
+}
+
+const { lang, tagline, path } = Astro.props;
+const homeHref = localePath(lang, '');
+---
+
+<header class="mb-16 flex items-baseline justify-between gap-6 border-b border-[var(--color-rule)] pb-6 md:mb-24">
+  <a href={homeHref} class="font-display text-2xl text-[var(--color-ink)]">
+    Periscope
+  </a>
+  <div class="flex items-baseline gap-6">
+    <p class="section-label hidden sm:block">{tagline}</p>
+    <LangSwitcher lang={lang} path={path} />
+  </div>
+</header>

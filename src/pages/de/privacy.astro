@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Privacy from '../../components/Privacy.astro';
+import { dictionaries } from '../../i18n';
+
+const t = dictionaries.de;
+const path = Astro.url.pathname;
+---
+
+<Layout lang="de" title={t.meta.privacy.title} description={t.meta.privacy.description}>
+  <Privacy t={t} lang="de" path={path} />
+</Layout>

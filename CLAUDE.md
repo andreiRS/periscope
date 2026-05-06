@@ -15,7 +15,7 @@ For full project context, see `BRIEF.local.md` (private, gitignored).
 - Static output, no server runtime.
 - Mobile-friendly, accessible, lightweight.
 - No analytics or tracking pixels.
-- Email capture via Tally.so (EU-based form provider, GDPR-friendly, free plan). Embed inline using Tally's loader script. CSV export keeps the migration path open if a different ESP is added later.
+- Email capture via a `mailto:` link to `periscope@surdu.eu` with a prefilled subject and body. No third-party form provider, no embedded script. The mailbox is Google Workspace (the only processor for waitlist messages).
 - Deploy via GitHub Pages, served at periscope.surdu.de.
 
 ## Tone for copy

@@ -1,0 +1,357 @@
+---
+import SiteHeader from './SiteHeader.astro';
+import { localePath, type Dictionary, type Locale } from '../i18n';
+
+interface Props {
+  t: Dictionary;
+  lang: Locale;
+  path: string;
+}
+
+const { t, lang, path } = Astro.props;
+
+const llms = ['ChatGPT', 'Claude', 'Perplexity', 'Gemini'];
+
+type Cell = { brand: string; you?: boolean; empty?: boolean };
+
+const matrixCells: Cell[][] = [
+  [{ brand: 'Brand A' }, { brand: 'Brand B' }, { brand: 'Brand A' }, { brand: 'Brand C' }],
+  [{ brand: 'Brand D' }, { brand: 'Brand A' }, { brand: 'Brand D' }, { brand: 'Brand E' }],
+  [{ brand: 'Brand F' }, { brand: 'Brand G' }, { brand: '', empty: true }, { brand: 'Brand F' }],
+  [{ brand: 'Brand H' }, { brand: 'Brand H' }, { brand: t.artifact.yourBrand, you: true }, { brand: 'Brand I' }],
+  [{ brand: 'Brand J' }, { brand: 'Brand K' }, { brand: 'Brand J' }, { brand: 'Brand L' }],
+  [{ brand: 'Brand M' }, { brand: 'Brand N' }, { brand: 'Brand M' }, { brand: '', empty: true }],
+  [{ brand: 'Brand O' }, { brand: 'Brand P' }, { brand: 'Brand O' }, { brand: 'Brand Q' }],
+  [{ brand: 'Brand R' }, { brand: 'Brand S' }, { brand: 'Brand R' }, { brand: 'Brand T' }],
+];
+
+const mailtoHref = `mailto:${t.waitlist.email}?subject=${encodeURIComponent(t.waitlist.mailto.subject)}&body=${encodeURIComponent(t.waitlist.mailto.body)}`;
+
+const imprintHref = localePath(lang, 'imprint');
+const privacyHref = localePath(lang, 'privacy');
+---
+
+<main class="mx-auto max-w-5xl px-6 py-20 md:px-10 md:py-28 lg:px-16">
+  <SiteHeader lang={lang} tagline={t.header.tagline} path={path} />
+
+  <!-- 1. The problem -->
+  <section class="mb-28 md:mb-36" aria-labelledby="problem-heading">
+    <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+      <aside class="mb-6 md:col-span-2 md:mb-0">
+        <p class="section-label">{t.problem.label}</p>
+        <p class="mt-3 text-xs italic text-[var(--color-ink-soft)] font-display-italic">
+          {t.problem.badge}
+        </p>
+      </aside>
+
+      <div class="md:col-span-10">
+        <h1
+          id="problem-heading"
+          class="font-display text-5xl leading-[1.05] text-[var(--color-ink)] md:text-7xl lg:text-[5.5rem] lg:leading-[0.98]"
+        >
+          {t.problem.headline.lead}
+          <span class="font-display-italic text-[var(--color-accent)]">{t.problem.headline.em}</span>
+          {t.problem.headline.trail}
+        </h1>
+
+        <p class="mt-10 max-w-2xl text-lg leading-relaxed text-[var(--color-ink-muted)] md:text-xl">
+          {t.problem.body}
+        </p>
+
+        <div class="mt-12 max-w-xl">
+          <div class="border-t border-[var(--color-ink)] pt-5">
+            <p class="section-label">{t.problem.waitlistLabel}</p>
+            <a
+              href={mailtoHref}
+              class="mt-5 inline-flex items-center gap-2 bg-[var(--color-ink)] px-5 py-3 text-sm font-medium tracking-wide text-[var(--color-paper)] transition hover:bg-[var(--color-accent)]"
+            >
+              {t.problem.cta}
+              <span aria-hidden="true">&rarr;</span>
+            </a>
+            <p class="mt-4 text-xs text-[var(--color-ink-soft)]">
+              {t.problem.fineprint.lead}
+              <a href={`mailto:${t.waitlist.email}`} class="link-underline">{t.waitlist.email}</a>{t.problem.fineprint.tail}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. The artifact -->
+  <section class="mb-28 md:mb-36" aria-labelledby="artifact-heading">
+    <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+      <aside class="mb-6 md:col-span-2 md:mb-0">
+        <p class="section-label">{t.artifact.label}</p>
+      </aside>
+
+      <div class="md:col-span-10">
+        <h2
+          id="artifact-heading"
+          class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+        >
+          {t.artifact.heading}
+        </h2>
+
+        <figure class="mt-12">
+          <div class="overflow-x-auto border-t border-b border-[var(--color-ink)]">
+            <table class="w-full min-w-[640px] border-collapse text-sm">
+              <thead>
+                <tr class="border-b border-[var(--color-rule)]">
+                  <th class="px-4 py-5 text-left font-display-italic text-base font-normal text-[var(--color-ink-muted)]">
+                    {t.artifact.promptHeader}
+                  </th>
+                  {llms.map((llm) => (
+                    <th class="px-4 py-5 text-center font-display-italic text-base font-normal text-[var(--color-ink-muted)]">
+                      {llm}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {t.artifact.prompts.map((prompt, i) => (
+                  <tr class={i < t.artifact.prompts.length - 1 ? 'border-b border-[var(--color-rule-soft)]' : ''}>
+                    <td class="px-4 py-5 text-[var(--color-ink)]">
+                      <span class="font-display-italic text-base">{prompt}</span>
+                    </td>
+                    {matrixCells[i].map((cell) => (
+                      <td class="px-4 py-5 text-center">
+                        {cell.empty ? (
+                          <span class="text-[var(--color-ink-soft)]">&ndash;</span>
+                        ) : cell.you ? (
+                          <span class="inline-flex items-center bg-[var(--color-accent)] px-2.5 py-1 text-xs font-semibold tracking-wide text-[var(--color-paper)]">
+                            {cell.brand}
+                          </span>
+                        ) : (
+                          <span class="text-sm text-[var(--color-ink-muted)]">
+                            {cell.brand}
+                          </span>
+                        )}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <figcaption class="mt-5 text-sm italic text-[var(--color-ink-soft)] font-display-italic">
+            {t.artifact.caption}
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. The report -->
+  <section class="mb-28 md:mb-36" aria-labelledby="report-heading">
+    <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+      <aside class="mb-6 md:col-span-2 md:mb-0">
+        <p class="section-label">{t.report.label}</p>
+      </aside>
+
+      <div class="md:col-span-10">
+        <h2
+          id="report-heading"
+          class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+        >
+          {t.report.heading.lead}
+          <span class="font-display-italic">{t.report.heading.em}</span>
+        </h2>
+
+        <div class="mt-12 grid grid-cols-1 gap-px bg-[var(--color-rule)] md:grid-cols-3 md:border md:border-[var(--color-rule)]">
+          {t.report.cards.map((card) => (
+            <article class="bg-[var(--color-paper)] p-7">
+              <p class="font-display-italic text-sm text-[var(--color-accent)]">{card.roman}</p>
+              <h3 class="mt-2 font-display text-2xl text-[var(--color-ink)]">{card.title}</h3>
+              <p class="mt-4 text-sm leading-relaxed text-[var(--color-ink-muted)]">{card.body}</p>
+            </article>
+          ))}
+        </div>
+
+        <p class="mt-10 max-w-3xl border-t border-[var(--color-rule)] pt-6 text-base leading-relaxed text-[var(--color-ink-muted)]">
+          <span class="font-semibold text-[var(--color-ink)]">{t.report.underneathLead}</span>
+          {' '}{t.report.underneathBody}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Process -->
+  <section class="mb-28 md:mb-36" aria-labelledby="process-heading">
+    <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+      <aside class="mb-6 md:col-span-2 md:mb-0">
+        <p class="section-label">{t.process.label}</p>
+      </aside>
+
+      <div class="md:col-span-10">
+        <h2
+          id="process-heading"
+          class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+        >
+          {t.process.heading.lead}
+          <span class="font-display-italic">{t.process.heading.em}</span>
+        </h2>
+
+        <ol class="mt-12 divide-y divide-[var(--color-rule)] border-t border-b border-[var(--color-rule)]">
+          {t.process.steps.map((step, i) => (
+            <li class="grid grid-cols-12 items-baseline gap-6 py-6">
+              <span class="col-span-2 font-display-italic text-2xl text-[var(--color-accent)] md:col-span-1 md:text-3xl">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <p class="col-span-10 text-base leading-relaxed text-[var(--color-ink)] md:col-span-11 md:text-lg">
+                {step}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Early findings -->
+  <section class="mb-28 md:mb-36" aria-labelledby="findings-heading">
+    <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+      <aside class="mb-6 md:col-span-2 md:mb-0">
+        <p class="section-label">{t.findings.label}</p>
+      </aside>
+
+      <div class="md:col-span-10">
+        <h2
+          id="findings-heading"
+          class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+        >
+          {t.findings.heading.lead}
+          <span class="font-display-italic">{t.findings.heading.em}</span>
+        </h2>
+
+        <div class="mt-12 max-w-2xl space-y-10 text-lg leading-relaxed text-[var(--color-ink-muted)]">
+          {t.findings.items.map((item) => (
+            <p class="border-l-2 border-[var(--color-accent)] pl-6">
+              <span class="block font-display text-3xl text-[var(--color-ink)]">{item.stat}</span>
+              <span class="mt-2 block">{item.body}</span>
+            </p>
+          ))}
+        </div>
+
+        <p class="mt-10 max-w-2xl border-t border-[var(--color-rule)] pt-5 font-display-italic text-sm text-[var(--color-ink-soft)]">
+          {t.findings.note}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Field notes -->
+  <section class="mb-28 md:mb-36" aria-labelledby="notes-heading">
+    <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+      <aside class="mb-6 md:col-span-2 md:mb-0">
+        <p class="section-label">{t.fieldNotes.label}</p>
+      </aside>
+
+      <div class="md:col-span-10">
+        <h2
+          id="notes-heading"
+          class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+        >
+          {t.fieldNotes.heading.lead}
+          <span class="font-display-italic">{t.fieldNotes.heading.em}</span>
+        </h2>
+
+        <ol class="mt-12 grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-2">
+          {t.fieldNotes.notes.map((note) => (
+            <li>
+              <p class="font-display-italic text-2xl text-[var(--color-accent)]">{note.roman}</p>
+              <p class="mt-2 text-base leading-relaxed text-[var(--color-ink-muted)]">{note.body}</p>
+            </li>
+          ))}
+        </ol>
+
+        <dl class="mt-14 grid grid-cols-1 gap-6 border-t border-[var(--color-rule)] pt-6 md:grid-cols-2">
+          {t.fieldNotes.glossary.map((g) => (
+            <div>
+              <dt class="font-display-italic text-base text-[var(--color-ink)]">{g.term}</dt>
+              <dd class="mt-1 text-sm text-[var(--color-ink-muted)]">{g.body}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. Waitlist (repeated) -->
+  <section class="mb-28 md:mb-36" aria-labelledby="waitlist-heading">
+    <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+      <aside class="mb-6 md:col-span-2 md:mb-0">
+        <p class="section-label">{t.waitlistRepeat.label}</p>
+      </aside>
+
+      <div class="md:col-span-10">
+        <div class="border border-[var(--color-ink)] bg-[var(--color-paper-2)] p-8 md:p-12">
+          <h2
+            id="waitlist-heading"
+            class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+          >
+            {t.waitlistRepeat.heading.lead}
+            <span class="font-display-italic">{t.waitlistRepeat.heading.em}</span>
+          </h2>
+          <p class="mt-4 max-w-xl text-base leading-relaxed text-[var(--color-ink-muted)] md:text-lg">
+            {t.waitlistRepeat.body}
+          </p>
+          <a
+            href={mailtoHref}
+            class="mt-8 inline-flex items-center gap-2 bg-[var(--color-ink)] px-5 py-3 text-sm font-medium tracking-wide text-[var(--color-paper)] transition hover:bg-[var(--color-accent)]"
+          >
+            {t.waitlistRepeat.cta}
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          <p class="mt-4 text-xs text-[var(--color-ink-soft)]">
+            {t.waitlistRepeat.fineprint.lead}
+            <a href={`mailto:${t.waitlist.email}`} class="link-underline">{t.waitlist.email}</a>{t.waitlistRepeat.fineprint.tail}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Colophon -->
+  <section class="mb-24 md:mb-32" aria-labelledby="about-heading">
+    <div class="grid grid-cols-1 gap-x-10 md:grid-cols-12">
+      <aside class="mb-6 md:col-span-2 md:mb-0">
+        <p class="section-label">{t.colophon.label}</p>
+      </aside>
+
+      <div class="md:col-span-10">
+        <h2
+          id="about-heading"
+          class="font-display text-3xl leading-tight text-[var(--color-ink)] md:text-5xl"
+        >
+          {t.colophon.heading.lead}
+          <span class="font-display-italic">{t.colophon.heading.em}</span>
+        </h2>
+        <p class="mt-8 max-w-2xl text-lg leading-relaxed text-[var(--color-ink-muted)]">
+          {t.colophon.bodyLead}
+          <a href={`mailto:${t.waitlist.email}`} class="link-underline">{t.waitlist.email}</a>{t.colophon.bodyTail}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Footer -->
+  <footer class="border-t border-[var(--color-ink)] pt-10">
+    <div class="grid grid-cols-1 gap-x-10 gap-y-6 md:grid-cols-12">
+      <div class="md:col-span-2">
+        <p class="font-display text-xl text-[var(--color-ink)]">Periscope</p>
+      </div>
+      <div class="md:col-span-10">
+        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <nav class="flex flex-col gap-2 text-sm text-[var(--color-ink-muted)] sm:flex-row sm:gap-8">
+            <a href={imprintHref} class="link-underline">{t.footer.imprint}</a>
+            <a href={privacyHref} class="link-underline">{t.footer.privacy}</a>
+          </nav>
+          <p class="font-display-italic text-xs text-[var(--color-ink-soft)]">
+            &copy; {new Date().getFullYear()} {t.footer.copyrightName}
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+</main>

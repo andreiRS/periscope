@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Imprint from '../../components/Imprint.astro';
+import { dictionaries } from '../../i18n';
+
+const t = dictionaries.de;
+const path = Astro.url.pathname;
+---
+
+<Layout lang="de" title={t.meta.imprint.title} description={t.meta.imprint.description}>
+  <Imprint t={t} lang="de" path={path} />
+</Layout>

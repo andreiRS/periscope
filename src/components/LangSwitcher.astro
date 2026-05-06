@@ -1,0 +1,27 @@
+---
+import { altUrl, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+  path: string;
+}
+
+const { lang, path } = Astro.props;
+const otherHref = altUrl(lang, path);
+const enLabel = 'EN';
+const deLabel = 'DE';
+---
+
+<nav aria-label="Language" class="section-label flex items-center gap-2">
+  {lang === 'en' ? (
+    <span class="text-[var(--color-ink)]">{enLabel}</span>
+  ) : (
+    <a href={otherHref} class="hover:text-[var(--color-accent)] transition-colors">{enLabel}</a>
+  )}
+  <span class="text-[var(--color-ink-soft)]" aria-hidden="true">·</span>
+  {lang === 'de' ? (
+    <span class="text-[var(--color-ink)]">{deLabel}</span>
+  ) : (
+    <a href={otherHref} class="hover:text-[var(--color-accent)] transition-colors">{deLabel}</a>
+  )}
+</nav>

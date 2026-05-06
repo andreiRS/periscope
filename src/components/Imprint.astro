@@ -1,0 +1,66 @@
+---
+import SiteHeader from './SiteHeader.astro';
+import { localePath, type Dictionary, type Locale } from '../i18n';
+
+interface Props {
+  t: Dictionary;
+  lang: Locale;
+  path: string;
+}
+
+const { t, lang, path } = Astro.props;
+const homeHref = localePath(lang, '');
+---
+
+<main class="mx-auto max-w-3xl px-6 py-12 md:py-16">
+  <SiteHeader lang={lang} tagline={t.header.tagline} path={path} />
+
+  <p class="mb-4 text-sm font-medium uppercase tracking-wider text-zinc-500">
+    {t.imprint.eyebrow}
+  </p>
+  <h1 class="text-3xl font-semibold tracking-tight text-zinc-950 md:text-4xl">
+    {t.imprint.title}
+  </h1>
+  <p class="mt-4 text-sm text-zinc-500">
+    {t.imprint.intro}
+  </p>
+
+  <section class="prose mt-10 max-w-none text-zinc-700">
+    <h2 class="text-xl font-semibold text-zinc-950">{t.imprint.operator.heading}</h2>
+    <p class="mt-2 leading-relaxed">
+      {t.imprint.operator.lines.map((line, i) => (
+        <Fragment>
+          {line}
+          {i < t.imprint.operator.lines.length - 1 && <br />}
+        </Fragment>
+      ))}
+    </p>
+
+    <h2 class="mt-8 text-xl font-semibold text-zinc-950">{t.imprint.contact.heading}</h2>
+    <p class="mt-2 leading-relaxed">
+      {t.imprint.contact.emailLabel}
+      {' '}
+      <a href={`mailto:${t.waitlist.email}`} class="underline underline-offset-4 hover:text-zinc-950">{t.waitlist.email}</a>
+    </p>
+
+    <h2 class="mt-8 text-xl font-semibold text-zinc-950">{t.imprint.vat.heading}</h2>
+    <p class="mt-2 leading-relaxed">{t.imprint.vat.body}</p>
+
+    <h2 class="mt-8 text-xl font-semibold text-zinc-950">{t.imprint.responsible.heading}</h2>
+    <p class="mt-2 leading-relaxed">{t.imprint.responsible.body}</p>
+
+    <h2 class="mt-8 text-xl font-semibold text-zinc-950">{t.imprint.odr.heading}</h2>
+    <p class="mt-2 leading-relaxed" set:html={t.imprint.odr.bodyHtml}></p>
+
+    <h2 class="mt-8 text-xl font-semibold text-zinc-950">{t.imprint.liability.heading}</h2>
+    <p class="mt-2 leading-relaxed">{t.imprint.liability.body}</p>
+
+    <p class="mt-10 text-sm text-zinc-500">{t.imprint.lastUpdated}</p>
+  </section>
+
+  <p class="mt-12 text-sm">
+    <a href={homeHref} class="underline underline-offset-4 hover:text-zinc-950">
+      {t.imprint.backToHome}
+    </a>
+  </p>
+</main>

@@ -1,29 +1,39 @@
 ---
 import '../styles/global.css';
+import { localePath, basePath, type Locale } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
+  lang: Locale;
 }
 
-const { title, description } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const { title, description, lang } = Astro.props;
+const path = Astro.url.pathname;
+const base = basePath(lang, path);
+const enUrl = new URL(localePath('en', base), Astro.site).toString();
+const deUrl = new URL(localePath('de', base), Astro.site).toString();
+const canonical = lang === 'de' ? deUrl : enUrl;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="de" href={deUrl} />
+    <link rel="alternate" hreflang="x-default" href={enUrl} />
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={lang === 'de' ? 'de_DE' : 'en_US'} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />

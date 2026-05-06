@@ -1,0 +1,12 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import HomePage from '../../components/HomePage.astro';
+import { dictionaries } from '../../i18n';
+
+const t = dictionaries.de;
+const path = Astro.url.pathname;
+---
+
+<Layout lang="de" title={t.meta.home.title} description={t.meta.home.description}>
+  <HomePage t={t} lang="de" path={path} />
+</Layout>
