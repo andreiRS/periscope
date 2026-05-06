@@ -130,18 +130,43 @@ const matrix: { prompt: string; cells: Cell[] }[] = [
 
             <!-- Primary CTA -->
             <div class="md:col-span-5">
-              <div class="border-t border-[var(--color-ink)] pt-5">
+              <!-- Default state: waitlist form -->
+              <div class="border-t border-[var(--color-ink)] pt-5" data-thanks-show="off">
                 <p class="section-label">The Waitlist</p>
-                <div
-                  class="mt-4"
+                <iframe
+                  class="mt-4 block w-full"
                   data-tally-src="https://tally.so/embed/RG8eBJ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&source=hero"
-                  style="min-height:160px;width:100%;"
-                ></div>
+                  loading="lazy"
+                  width="100%"
+                  height="160"
+                  frameborder="0"
+                  marginheight="0"
+                  marginwidth="0"
+                  title="Periscope waitlist"
+                ></iframe>
                 <p class="mt-3 text-xs text-[var(--color-ink-soft)]">
                   No spam. One email when audits open up, then nothing else.
                   Your address goes to Tally (EU-based form provider) and to
                   me. See the
                   <a href="/privacy" class="link-underline">privacy policy</a>.
+                </p>
+              </div>
+
+              <!-- Post-submit state: shown when ?thanks=1 -->
+              <div class="border-t border-[var(--color-accent)] pt-5" data-thanks-show="on">
+                <p class="section-label" style="color: var(--color-accent);">You are on the list</p>
+                <p class="mt-4 font-display text-3xl leading-tight text-[var(--color-ink)]">
+                  Thanks. Your email
+                  <span class="font-display-italic text-[var(--color-accent)]">landed.</span>
+                </p>
+                <p class="mt-4 text-sm leading-relaxed text-[var(--color-ink-muted)]">
+                  One email when the first audit slots open up, then nothing
+                  else. If you want to send a URL ahead of the queue, my
+                  inbox is open at
+                  <a href="mailto:periscope@surdu.eu" class="link-underline">periscope@surdu.eu</a>.
+                </p>
+                <p class="mt-3 text-xs text-[var(--color-ink-soft)]">
+                  <a href="/" class="link-underline">&larr; back to the page</a>
                 </p>
               </div>
             </div>
@@ -454,11 +479,17 @@ const matrix: { prompt: string; cells: Cell[] }[] = [
             <p class="mt-4 max-w-xl text-base leading-relaxed text-[var(--color-ink-muted)] md:text-lg">
               Drop your email. I will message you the moment the first slots open.
             </p>
-            <div
-              class="mt-8 max-w-xl"
+            <iframe
+              class="mt-8 block w-full max-w-xl"
               data-tally-src="https://tally.so/embed/RG8eBJ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&source=repeat"
-              style="min-height:160px;width:100%;"
-            ></div>
+              loading="lazy"
+              width="100%"
+              height="160"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+              title="Periscope waitlist"
+            ></iframe>
             <p class="mt-4 text-xs text-[var(--color-ink-soft)]">
               First batch will be small. I will keep the queue honest.
               Your address goes to Tally (EU-based form provider) and to me.
@@ -490,7 +521,7 @@ const matrix: { prompt: string; cells: Cell[] }[] = [
             across a handful of indie SaaS products and watching the same
             patterns show up. If you want to talk before signing up, my inbox
             is open at
-            <a href="mailto:andrei@surdu.eu" class="link-underline">andrei@surdu.eu</a>.
+            <a href="mailto:periscope@surdu.eu" class="link-underline">periscope@surdu.eu</a>.
           </p>
         </div>
       </div>
@@ -505,12 +536,11 @@ const matrix: { prompt: string; cells: Cell[] }[] = [
         <div class="md:col-span-10">
           <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <nav class="flex flex-col gap-2 text-sm text-[var(--color-ink-muted)] sm:flex-row sm:gap-8">
-              <a href="mailto:andrei@surdu.eu" class="link-underline">andrei@surdu.eu</a>
               <a href="/imprint" class="link-underline">Imprint</a>
               <a href="/privacy" class="link-underline">Privacy</a>
             </nav>
             <p class="font-display-italic text-xs text-[var(--color-ink-soft)]">
-              &copy; {new Date().getFullYear()} Andrei Surdu
+              &copy; {new Date().getFullYear()} Razvan Andrei Surdu
             </p>
           </div>
         </div>

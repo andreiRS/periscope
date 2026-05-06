@@ -34,6 +34,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site).toString();
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap"
     />
+    <script is:inline>
+      if (new URLSearchParams(location.search).get("thanks") === "1") {
+        document.documentElement.setAttribute("data-thanks", "1");
+      }
+    </script>
   </head>
   <body class="antialiased">
     <slot />
