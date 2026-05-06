@@ -14,8 +14,6 @@
   --color-rule: #e8dfcd;
   --color-rule-soft: #efe7d5;
   --color-accent: #c2643d;
-  --color-accent-deep: #a8512e;
-  --color-accent-soft: #fbeadd;
 }
 
 html,
@@ -64,31 +62,7 @@ body {
   background-size: 100% 2px;
 }
 
-.accent-link {
-  color: var(--color-accent);
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  transition: opacity 200ms ease;
-}
-
-.accent-link:hover {
-  opacity: 0.7;
-}
-
-.editorial-input:focus {
-  outline: none;
-  border-color: var(--color-ink);
-  box-shadow: 0 1px 0 0 var(--color-ink);
-}
-
 ::selection {
   background: var(--color-accent);
   color: var(--color-paper);
-}
-
-html[data-thanks="1"] [data-thanks-show="off"] {
-  display: none !important;
-}
-html:not([data-thanks="1"]) [data-thanks-show="on"] {
-  display: none !important;
 }
