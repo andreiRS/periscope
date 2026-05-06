@@ -223,7 +223,7 @@ export const de: Dictionary = {
       itemsHtml: [
         'Die Warteliste ist eine direkte E-Mail an <a href="mailto:periscope@surdu.eu" class="underline underline-offset-4 hover:text-zinc-950">periscope@surdu.eu</a>. Kein Formular-Anbieter zwischen dir und mir. Deine Adresse und deine Nachricht landen in meinem Postfach.',
         'Ich schreibe dir einmal, wenn die Audits öffnen, und sonst nicht, außer du fragst.',
-        'Keine Analytics, keine Tracking-Pixel, keine Werbe-Cookies, keine eingebetteten Formulare. Die Seite selbst setzt keine Tracking-Cookies.',
+        'Pageviews werden über <a href="https://www.goatcounter.com" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">GoatCounter</a> gezählt, einen datenschutzfreundlichen Analytics-Dienst. Keine Cookies, keine personenbezogenen Daten gespeichert, kein seitenübergreifendes Tracking. Keine Werbe-Pixel, keine eingebetteten Formulare.',
         'Du kannst mich jederzeit bitten, deine E-Mail zu löschen. Eine Nachricht an <a href="mailto:periscope@surdu.eu" class="underline underline-offset-4 hover:text-zinc-950">periscope@surdu.eu</a> reicht.',
       ],
     },
@@ -264,12 +264,13 @@ export const de: Dictionary = {
         '<strong class="font-semibold text-zinc-950">Google Ireland Limited</strong>, Gordon House, Barrow Street, Dublin 4, Irland. Betreibt Google Workspace, das das Postfach periscope@surdu.eu hostet und ein- und ausgehende Nachrichten verarbeitet. Die Verarbeitung erfolgt nach dem Google-Workspace Data Processing Amendment. Drittlandübermittlungen an Google LLC in den USA sind durch das EU–U.S. Data Privacy Framework abgedeckt, dem Google zertifiziert ist. Siehe <a href="https://policies.google.com/privacy" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">Datenschutzerklärung von Google</a> und das <a href="https://workspace.google.com/terms/dpa_terms.html" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">Workspace DPA</a>.',
         '<strong class="font-semibold text-zinc-950">GitHub, Inc.</strong>, 88 Colin P Kelly Jr Street, San Francisco, CA 94107, USA. Hosting-Provider für die statische Site-Auslieferung. Drittlandübermittlung gedeckt durch das EU–U.S. Data Privacy Framework. Siehe <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">Datenschutzerklärung von GitHub</a>.',
         '<strong class="font-semibold text-zinc-950">INWX GmbH &amp; Co. KG</strong>, Domain-Registrar für surdu.de.',
+        '<strong class="font-semibold text-zinc-950">GoatCounter</strong>, betrieben von Martin Tournoij (Niederlande). Datenschutzfreundliche Pageview-Analytics. Keine Cookies, keine personenbezogenen Daten gespeichert, keine IP-Speicherung, kein seitenübergreifendes Tracking. Siehe <a href="https://www.goatcounter.com/help/privacy" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">Datenschutzerklärung von GoatCounter</a>.',
       ],
     },
     cookies: {
-      heading: '4. Cookies und Tracking',
+      heading: '4. Cookies und Analytics',
       body:
-        'Diese Seite setzt keine Cookies für Analytics, Werbung oder Tracking. Es werden keine Drittanbieter-Analytics geladen, und es werden keine eingebetteten Formulare oder Widgets verwendet.',
+        'Diese Seite setzt keine Cookies. Pageviews werden über GoatCounter gezählt, einen datenschutzfreundlichen Analytics-Dienst, betrieben von Martin Tournoij (Niederlande). GoatCounter setzt keine Cookies, speichert keine personenbezogenen Daten, trackt nicht seitenübergreifend und speichert keine IP-Adressen; zur Schätzung eindeutiger Besucher wird ausschließlich ein gesalzener, täglich rotierender Hash aus IP und User-Agent erzeugt. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer einfachen, aggregierten Reichweitenmessung). Siehe GoatCounters Datenschutzerklärung unter https://www.goatcounter.com/help/privacy. Es werden keine Werbe-Pixel, eingebettete Formulare oder Drittanbieter-Widgets geladen.',
     },
     rights: {
       heading: '5. Deine Rechte',
@@ -301,7 +302,7 @@ export const de: Dictionary = {
       body:
         'Diese Erklärung kann angepasst werden, wenn sich die Seite weiterentwickelt. Die jeweils aktuelle Version steht unter dieser URL. Wesentliche Änderungen werden im "Stand"-Datum unten reflektiert.',
     },
-    lastUpdated: 'Stand: 05.05.2026',
+    lastUpdated: 'Stand: 06.05.2026',
     backToHome: '← Zurück zu Periscope',
   },
 };

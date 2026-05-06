@@ -14,7 +14,7 @@ For full project context, see `BRIEF.local.md` (private, gitignored).
 - Astro for the static site generator.
 - Static output, no server runtime.
 - Mobile-friendly, accessible, lightweight.
-- No analytics or tracking pixels.
+- Pageview counting via GoatCounter only (cookieless, no personal data stored, loaded as `//gc.zgo.at/count.js` and gated to production builds). No tracking pixels, no advertising scripts, no other analytics.
 - Email capture via a `mailto:` link to `periscope@surdu.eu` with a prefilled subject and body. No third-party form provider, no embedded script. The mailbox is Google Workspace (the only processor for waitlist messages).
 - Deploy via GitHub Pages, served at periscope.surdu.de.
 

@@ -219,7 +219,7 @@ export const en = {
       itemsHtml: [
         'The waitlist is a plain email to <a href="mailto:periscope@surdu.eu" class="underline underline-offset-4 hover:text-zinc-950">periscope@surdu.eu</a>. No form provider sits between you and me. Your address and message land in my inbox.',
         'I will email you once when audits open up, and not again unless you ask.',
-        'No analytics, no tracking pixels, no advertising cookies, no embedded forms. The site itself sets no cookies for tracking.',
+        'Pageviews are counted via <a href="https://www.goatcounter.com" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">GoatCounter</a>, a privacy-friendly analytics service. No cookies, no personal data stored, no cross-site tracking. No advertising pixels, no embedded forms.',
         'You can ask me at any time to delete your email. One message to <a href="mailto:periscope@surdu.eu" class="underline underline-offset-4 hover:text-zinc-950">periscope@surdu.eu</a> is enough.',
       ],
     },
@@ -260,12 +260,13 @@ export const en = {
         '<strong class="font-semibold text-zinc-950">Google Ireland Limited</strong>, Gordon House, Barrow Street, Dublin 4, Ireland. Operates Google Workspace, which hosts the periscope@surdu.eu mailbox and processes incoming and outgoing messages. Processing is governed by the Google Workspace Data Processing Amendment. Cross-border transfers to Google LLC in the United States are covered by the EU–U.S. Data Privacy Framework, to which Google is certified. See <a href="https://policies.google.com/privacy" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">Google\'s privacy policy</a> and the <a href="https://workspace.google.com/terms/dpa_terms.html" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">Workspace DPA</a>.',
         '<strong class="font-semibold text-zinc-950">GitHub, Inc.</strong>, 88 Colin P Kelly Jr Street, San Francisco, CA 94107, USA. Hosting provider for static site delivery. Cross-border transfer is covered by the EU–U.S. Data Privacy Framework. See <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">GitHub\'s privacy statement</a>.',
         '<strong class="font-semibold text-zinc-950">INWX GmbH &amp; Co. KG</strong>, domain registrar for surdu.de.',
+        '<strong class="font-semibold text-zinc-950">GoatCounter</strong>, operated by Martin Tournoij (Netherlands). Privacy-friendly pageview analytics. No cookies, no personal data stored, no IP retention, no cross-site tracking. See <a href="https://www.goatcounter.com/help/privacy" class="underline underline-offset-4 hover:text-zinc-950" rel="noopener">GoatCounter\'s privacy policy</a>.',
       ],
     },
     cookies: {
-      heading: '4. Cookies and tracking',
+      heading: '4. Cookies and analytics',
       body:
-        'This site sets no cookies for analytics, advertising, or tracking. No third-party analytics tools are loaded, and no embedded forms or widgets are used.',
+        'This site sets no cookies. Pageviews are counted via GoatCounter, a privacy-friendly analytics service operated by Martin Tournoij (Netherlands). GoatCounter does not use cookies, does not store personal data, does not track visitors across sites, and does not retain IP addresses; it generates a salted, daily-rotating hash of your IP and user agent solely to estimate unique visitors. Legal basis: Art. 6 (1) (f) GDPR (legitimate interest in basic, aggregate audience measurement). See GoatCounter\'s privacy policy at https://www.goatcounter.com/help/privacy. No advertising, no embedded forms, no third-party widgets are loaded.',
     },
     rights: {
       heading: '5. Your rights',
@@ -297,7 +298,7 @@ export const en = {
       body:
         'This policy may be updated as the site evolves. The current version is always available at this URL. Material changes will be reflected in the "Last updated" date below.',
     },
-    lastUpdated: 'Last updated: 2026-05-05',
+    lastUpdated: 'Last updated: 2026-05-06',
     backToHome: '← Back to Periscope',
   },
 };
