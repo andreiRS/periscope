@@ -31,11 +31,11 @@ export const de: Dictionary = {
       trail: 'statt dir?',
     },
     body: 'Und gerade jetzt nennen diese Antworten deine Wettbewerber. In zwei Werktagen bekommst du die vollständige Liste: jede Marke, die in ChatGPT, Claude, Perplexity und Gemini statt dir genannt wird, die Prompts, bei denen du verloren hast, und die Fixes, die dich am wahrscheinlichsten zurück in die Antwort bringen. 30 bis 50 Buyer-Intent-Prompts, ein Pauschal-Report.',
-    waitlistLabel: 'Die Warteliste',
-    cta: 'Per E-Mail auf die Warteliste',
+    waitlistLabel: 'Loslegen',
+    cta: 'Was es kostet',
     fineprint: {
       lead: 'Oder schreib direkt an',
-      tail: '. Kein Drittanbieter-Formular. Eine E-Mail wenn die Audits öffnen, danach nichts mehr.',
+      tail: '. Kein Drittanbieter-Formular, kein Skript zwischen uns.',
     },
   },
   artifact: {
@@ -147,21 +147,81 @@ export const de: Dictionary = {
       },
     ],
   },
-  waitlistRepeat: {
-    label: '07 / Warteliste',
+  pricing: {
+    label: '07 / Preis',
     heading: {
-      lead: 'Möchtest du dabei sein,',
-      em: 'wenn die Audits öffnen?',
+      lead: 'Was es kostet,',
+      em: 'klar gesagt.',
     },
-    body: 'Schreib mir eine E-Mail und ich setze dich auf die Liste. Ich melde mich, sobald die ersten Slots öffnen.',
-    cta: 'Per E-Mail auf die Warteliste',
+    body:
+      'Ein Audit, ein Pauschalpreis. Willst du mehr Runs? Kauf sie im Voraus und setz sie ein, wenn du ein Redesign launchst oder dein Positioning verschiebst. Kein Abo, keine automatische Verlängerung. Credits verfallen 12 Monate nach Kauf.',
+    tiers: [
+      {
+        name: 'Snapshot',
+        price: '199 €',
+        savings: '',
+        bullets: [
+          'Ein vollständiger Audit',
+          '30 bis 50 Buyer-Intent-Prompts',
+          'ChatGPT, Claude, Perplexity, Gemini',
+          'Report in 2 Werktagen',
+        ],
+        cta: 'Snapshot holen',
+        mailtoSubject: 'Periscope Warteliste: Snapshot',
+        mailtoBody:
+          'Hi Andrei,\n\nich möchte auf die Periscope-Warteliste für die Snapshot-Option (199 €).\n\nMeine Seite (optional): \n\nDanke',
+      },
+      {
+        name: 'Quarterly Pack',
+        price: '279 €',
+        savings: '37 € sparen',
+        bullets: [
+          'Alles aus Snapshot',
+          '3 Follow-up-Credits',
+          'Einlösbar innerhalb 12 Monaten',
+        ],
+        cta: 'Quarterly Pack holen',
+        mailtoSubject: 'Periscope Warteliste: Quarterly Pack',
+        mailtoBody:
+          'Hi Andrei,\n\nich möchte auf die Periscope-Warteliste für die Option Quarterly Pack (279 €).\n\nMeine Seite (optional): \n\nDanke',
+      },
+      {
+        name: 'Yearly Pack',
+        price: '499 €',
+        savings: '90 € sparen',
+        bullets: [
+          'Alles aus Snapshot',
+          '10 Follow-up-Credits',
+          'Einlösbar innerhalb 12 Monaten',
+        ],
+        cta: 'Yearly Pack holen',
+        mailtoSubject: 'Periscope Warteliste: Yearly Pack',
+        mailtoBody:
+          'Hi Andrei,\n\nich möchte auf die Periscope-Warteliste für die Option Yearly Pack (499 €).\n\nMeine Seite (optional): \n\nDanke',
+      },
+    ],
+    addon: {
+      title: 'Add-on:',
+      body:
+        'Wettbewerber-Benchmark (+99 €). Füg jedem Audit 2 bis 3 namentliche Wettbewerber hinzu und sieh genau, wo sie dich überholen. Erwähn es in deiner E-Mail.',
+    },
+    adhoc: 'Einzelne Follow-up-Runs ad-hoc verfügbar zu 39 € pro Run.',
+  },
+  waitlistRepeat: {
+    label: '08 / Fragen',
+    heading: {
+      lead: 'Hast du eine Frage,',
+      em: 'bevor du dich entscheidest?',
+    },
+    body: 'Unsicher, welche Option passt? Wissen, wie ein Follow-up tatsächlich aussieht, oder ob dein Produkt für einen Audit im richtigen Stadium ist? Schreib mir. Ich dränge dich nicht in eine Option, die du nicht brauchst.',
+    cta: 'Stell eine Frage',
     fineprint: {
-      lead: 'Erste Charge wird klein. Ich halte die Schlange ehrlich. Oder schreib direkt an',
-      tail: '.',
+      lead: 'Oder schreib direkt an',
+      tail: '. Klare Frage, klare Antwort.',
     },
   },
   colophon: {
-    label: '08 / Colophon',
+    label: '09 / Colophon',
     heading: {
       lead: 'Wer das hier',
       em: 'macht.',
@@ -178,8 +238,8 @@ export const de: Dictionary = {
   waitlist: {
     email: 'periscope@surdu.eu',
     mailto: {
-      subject: 'Periscope Warteliste',
-      body: 'Hi Andrei,\n\nich möchte gern auf die Periscope-Warteliste.\n\nMeine Seite (optional): \n\nDanke',
+      subject: 'Periscope: Frage',
+      body: 'Hi Andrei,\n\nbevor ich mich für eine Option entscheide, habe ich eine Frage zu Periscope:\n\n\n\nDanke',
     },
   },
   imprint: {

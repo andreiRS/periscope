@@ -27,11 +27,11 @@ export const en = {
       trail: 'to your customers instead of you?',
     },
     body: 'And right now, those answers name your competitors. In two business days, you get the full list: every brand named instead of you across ChatGPT, Claude, Perplexity, and Gemini, the prompts where you lost, and the fixes most likely to put you back in the answer. 30 to 50 buyer-intent queries, one flat-fee report.',
-    waitlistLabel: 'The Waitlist',
-    cta: 'Email me to join the waitlist',
+    waitlistLabel: 'Get started',
+    cta: 'See what it costs',
     fineprint: {
       lead: 'Or write directly to',
-      tail: '. No third-party form. One email when audits open up, then nothing else.',
+      tail: '. No third-party form, no script between you and me.',
     },
   },
   artifact: {
@@ -143,21 +143,81 @@ export const en = {
       },
     ],
   },
-  waitlistRepeat: {
-    label: '07 / Waitlist',
+  pricing: {
+    label: '07 / Price',
     heading: {
-      lead: 'Want one',
-      em: 'when audits open up?',
+      lead: 'What it costs,',
+      em: 'plainly.',
     },
-    body: 'Send me an email and I will add you to the list. I will message you the moment the first slots open.',
-    cta: 'Email me to join the waitlist',
+    body:
+      'One audit, one fee. Want more runs? Buy them upfront and use them when you ship a redesign or shift positioning. No subscription, no auto-renew. Credits expire 12 months after purchase.',
+    tiers: [
+      {
+        name: 'Snapshot',
+        price: '€199',
+        savings: '',
+        bullets: [
+          'One full audit',
+          '30 to 50 buyer-intent prompts',
+          'ChatGPT, Claude, Perplexity, Gemini',
+          'Report in 2 business days',
+        ],
+        cta: 'Get the Snapshot',
+        mailtoSubject: 'Periscope waitlist: Snapshot',
+        mailtoBody:
+          "Hi Andrei,\n\nI'd like to be on the Periscope waitlist for the Snapshot option (€199).\n\nMy site (optional): \n\nThanks",
+      },
+      {
+        name: 'Quarterly Pack',
+        price: '€279',
+        savings: 'Save €37',
+        bullets: [
+          'Everything in Snapshot',
+          '3 follow-up credits',
+          'Use anytime within 12 months',
+        ],
+        cta: 'Get the Quarterly Pack',
+        mailtoSubject: 'Periscope waitlist: Quarterly Pack',
+        mailtoBody:
+          "Hi Andrei,\n\nI'd like to be on the Periscope waitlist for the Quarterly Pack option (€279).\n\nMy site (optional): \n\nThanks",
+      },
+      {
+        name: 'Yearly Pack',
+        price: '€499',
+        savings: 'Save €90',
+        bullets: [
+          'Everything in Snapshot',
+          '10 follow-up credits',
+          'Use anytime within 12 months',
+        ],
+        cta: 'Get the Yearly Pack',
+        mailtoSubject: 'Periscope waitlist: Yearly Pack',
+        mailtoBody:
+          "Hi Andrei,\n\nI'd like to be on the Periscope waitlist for the Yearly Pack option (€499).\n\nMy site (optional): \n\nThanks",
+      },
+    ],
+    addon: {
+      title: 'Add-on:',
+      body:
+        'Competitor benchmark (+€99). Add 2 to 3 named competitors to any audit and see exactly where they outrank you. Mention it in your email.',
+    },
+    adhoc: 'Single follow-up runs available ad-hoc at €39 each.',
+  },
+  waitlistRepeat: {
+    label: '08 / Questions',
+    heading: {
+      lead: 'Have a question',
+      em: 'before you decide?',
+    },
+    body: "Not sure which tier fits? Want to know what a follow-up actually looks like, or whether your product is at the right stage for an audit? Email me. I will not push you into a tier you don't need.",
+    cta: 'Ask a question',
     fineprint: {
-      lead: 'First batch will be small. I will keep the queue honest. Or write directly to',
-      tail: '.',
+      lead: 'Or write directly to',
+      tail: '. Plain question, plain reply.',
     },
   },
   colophon: {
-    label: '08 / Colophon',
+    label: '09 / Colophon',
     heading: {
       lead: 'Who is',
       em: 'running this.',
@@ -174,8 +234,8 @@ export const en = {
   waitlist: {
     email: 'periscope@surdu.eu',
     mailto: {
-      subject: 'Periscope waitlist',
-      body: "Hi Andrei,\n\nI'd like to be on the Periscope waitlist.\n\nMy site (optional): \n\nThanks",
+      subject: 'Periscope: question',
+      body: 'Hi Andrei,\n\nI have a question about Periscope before I decide on a tier:\n\n\n\nThanks',
     },
   },
   imprint: {
